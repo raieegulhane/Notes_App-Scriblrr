@@ -1,0 +1,22 @@
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,400;1,700&family=Pacifico&display=swap');
+
+:root {
+
+    /* fonts */
+    --logo-font: 'Pacifico', cursive;
+    --text-font: 'Open Sans', sans-serif;
+
+    /* colors */
+    --white: #ffffff;
+    --black: #202124;
+    --primary-color: #a0acff;
+    --primary-color-highlight: #7184ff;
+    --secondary-color: #c0c9ff;
+    --accent-color: #e7eaff;
+    --primary-grey: #f1f3f4;
+    --secondary-grey:#c4c4c4;
+    --app-content-grey:#5f6368;
+    --text-color: #303030;
+    --grey: #ccc;
+}
