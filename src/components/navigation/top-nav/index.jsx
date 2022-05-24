@@ -17,7 +17,7 @@ const TopNav = () => {
                         target="_blank" 
                         rel="noreferrer"
                     >
-                        <i className="fa-brands fa-twitter"></i>
+                        <i className="fa-brands fa-twitter social-icon"></i>
                     </a>
                     <a 
                         className="btn-icon link-noDecoration" 
@@ -25,7 +25,7 @@ const TopNav = () => {
                         target="_blank" 
                         rel="noreferrer"
                     >
-                        <i className="fa-brands fa-github-alt"></i>
+                        <i className="fa-brands fa-github-alt social-icon"></i>
                     </a>
                 </div>
             </nav>
