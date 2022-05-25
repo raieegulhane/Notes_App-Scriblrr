@@ -1,5 +1,4 @@
 import "./styles/styles.css"
-import SiteRoutes from "./routes/site-routes";
 import { SideNav, TopNav } from "./components";
 
 
