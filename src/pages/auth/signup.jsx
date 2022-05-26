@@ -1,9 +1,15 @@
 import "./auth.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { PasswordInput } from "../../components/password-input";
+import { signupService } from "../../services/signup-service"
+import { useAuth } from "../../contexts/auth-context";
 
 const Signup = () => {
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const { authDispatch } = useAuth();
 
     const [userData, setUserData] = useState(
         {
@@ -16,8 +22,32 @@ const Signup = () => {
     const { name, email, password, confirmPassword } = userData;
 
     const updateUserData = (event) => {
-        const {name, value} = event.target;
+        const { name, value } = event.target;
         setUserData((userData) => ({...userData, [name]: value}));
+    }
+
+    const signupHandler = async (event, formData) => {
+        event.preventDefault();
+
+        const data = await signupService(formData);
+        const { createdUser: user, encodedToken: token } = data;
+
+        try {
+            authDispatch(
+                {
+                    type: "AUTH_INIT",
+                    payload: data
+                }
+            );
+
+            localStorage.setItem("auth-token", token);
+            localStorage.setItem("user-data", JSON.stringify(user));
+
+            navigate(location?.state?.form?.pathname, { replace: true });
+        } catch (error) {
+            console.log(error);
+        }
+        
     }
 
     return (
@@ -65,7 +95,7 @@ const Signup = () => {
                     <label className="auth-label" htmlFor="confirm-password">
                         Confirm Password:
                         <PasswordInput 
-                            id={"new-password"}
+                            id={"confirm-password"}
                             name={"confirmPassword"}
                             placeholder={"Re-enter password"}
                             value={confirmPassword}
@@ -83,7 +113,9 @@ const Signup = () => {
 
                     <button 
                         className="btn-block btn btn-sq btn-auth btn-primary"
+                        disabled={!name || !email || !password || !confirmPassword || password !== confirmPassword}
                         type="submit"
+                        onClick={(event) => signupHandler(event, userData)}
                     >
                         Create Account
                     </button>
