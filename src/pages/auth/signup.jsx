@@ -30,7 +30,7 @@ const Signup = () => {
         event.preventDefault();
 
         const data = await signupService(formData);
-        const { createdUser: user, encodedToken: token } = data;
+        const { createdUser, encodedToken } = data;
 
         try {
             authDispatch(
@@ -40,8 +40,8 @@ const Signup = () => {
                 }
             );
 
-            localStorage.setItem("auth-token", token);
-            localStorage.setItem("user-data", JSON.stringify(user));
+            localStorage.setItem("auth-token", encodedToken);
+            localStorage.setItem("user-data", JSON.stringify(createdUser));
 
             navigate(location?.state?.form?.pathname, { replace: true });
         } catch (error) {
@@ -116,6 +116,7 @@ const Signup = () => {
                         disabled={!name || !email || !password || !confirmPassword || password !== confirmPassword}
                         type="submit"
                         onClick={(event) => signupHandler(event, userData)}
+                        // onClick={signupService(userData)}
                     >
                         Create Account
                     </button>
@@ -127,7 +128,7 @@ const Signup = () => {
             </div>
 
             <p className="alt-auth-prompt txt-center">
-                New user? <Link className="auth-redirect txt-bold txt-primary link-noDecoration" to="/login">Login</Link> into your account.
+                Already an user? <Link className="auth-redirect txt-bold txt-primary link-noDecoration" to="/login">Login</Link> into your account.
             </p>
 
         </main>

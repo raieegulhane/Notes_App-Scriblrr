@@ -5,7 +5,7 @@ const signupService = async (userData) => {
         const response = await axios.post("/api/auth/signup", userData);
         return response.data;
     } catch (error) {
-        console.log(error);
+        console.log("SIGNUP ERROR: ", error);
     }
 }
 
