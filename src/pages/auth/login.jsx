@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { PasswordInput } from "../../components/password-input";
 import { useAuth } from "../../contexts/auth-context";
+import { initialAuthValue } from "../../reducers/auth-reducer";
 import { loginService } from "../../services/login-service";
-import { signupService } from "../../services/signup-service";
 
 const Login = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const { authDispatch } = useAuth();
+    const { isAuth, authDispatch } = useAuth();
+
+    useEffect(() => {
+        isAuth && navigate(location?.state?.from ? location.state.from : "/home", { replace: true });
+    }, []);
 
     const [loginCreds, setLoginCreds] = useState({email: "", password: ""});
     const { email, password } = loginCreds;
@@ -19,30 +23,43 @@ const Login = () => {
         setLoginCreds((loginCreds) => ({...loginCreds, [name]: value}));
     }
 
-    
-
     const loginHandler = async (event, formData) => {
         event.preventDefault();
 
-        const data = await loginService(formData);
-        const {foundUser, encodedToken} = data;
-
         try {
+            const data = await loginService(formData);
+            const { foundUser, encodedToken } = data;
+
             authDispatch(
                 {
                     type: "AUTH_INIT",
-                    payload: data
+                    payload: {
+                        isAuth: true,
+                        authUser: { ... foundUser },
+                        authToken: encodedToken,
+                        authError: null
+                    }
+                    
                 }
             );
 
             localStorage.setItem("auth-token", encodedToken);
             localStorage.setItem("user-data", JSON.stringify(foundUser));
 
-            navigate(location?.state?.form?.pathname);
+            navigate(location?.state?.from ? location.state.from : "/" , {replace: true});
         } catch (error) {
             console.log("LOGIN ERROR", error);
-        }
 
+            localStorage.removeItem("auth-token");
+            localStorage.removeItem("user-data");
+
+            authDispatch(
+                {
+                    ...initialAuthValue, 
+                    authError: "Problem occured while loging in"
+                }
+            );
+        }
     }
 
     return (
@@ -79,7 +96,6 @@ const Login = () => {
                         className="btn-block btn btn-sq btn-auth btn-primary"
                         disabled={!email || !password }
                         type="submit"
-                        // onClick={loginService(loginCreds)}
                         onClick={(event) => loginHandler(event, loginCreds)}
                     >
                         Continue
@@ -88,7 +104,7 @@ const Login = () => {
                     <button 
                         className="btn-block btn-outline btn btn-sq btn-auth"
                         type="submit"
-                        // onClick={(event) => loginHandler(event, loginCreds)}
+                        onClick={(event) => loginHandler(event, {email: "janedoe@example.com", password: "janedoe123"})}
                     >
                         Continue as Guest
                     </button>

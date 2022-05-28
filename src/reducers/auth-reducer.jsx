@@ -1,35 +1,30 @@
 const initialAuthValue = {
     isAuth: false,
-    user: {},
-    encodedToken: ""
+    authUser: {},
+    authToken: "",
+    authError: null
 }
 
-const authReducerFunction = (state, {type, payload}) => {
+const authReducerFunction = (authState, {authAction: {type, payload: { isAuth, authUser, authToken, authError }}}) => {
     switch (type) {
         // for login or signup
-        case "AUTH_SUCCESS": 
+        case "AUTH_INIT": 
             return (
                 {
-                    ...state,
-                    isAuth: payload.encodedToken ? true : false,
-                    user: payload.user,
-                    encodedToken: payload.encodedToken
+                    ...authState,
+                    isAuth,
+                    authUser,
+                    authToken,
+                    authError
                 }
             );
 
         // for logout
         case "AUTH_CLEAR":
-            return (
-                {
-                    ...state,
-                    isAuth: false,
-                    user: {},
-                    encodedToken: ""
-                }
-            );
+            return ({...initialAuthValue});
 
         default:
-            return {...state};
+            return new Error ("Invalid inputs");
     }
 } 
 

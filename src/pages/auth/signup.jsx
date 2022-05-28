@@ -1,15 +1,20 @@
 import "./auth.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PasswordInput } from "../../components/password-input";
 import { signupService } from "../../services/signup-service"
 import { useAuth } from "../../contexts/auth-context";
+import { initialAuthValue } from "../../reducers/auth-reducer";
 
 const Signup = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const { authDispatch } = useAuth();
+    const { authDispatch, isAuth } = useAuth();
+
+    useEffect(() => {
+        isAuth && navigate(location?.state?.from ? location.state.from : "/home", { replace: true});
+    }, []);
 
     const [userData, setUserData] = useState(
         {
@@ -19,7 +24,7 @@ const Signup = () => {
             confirmPassword: ""
         }
     );
-    const { name, email, password, confirmPassword } = userData;
+    const { firstName, lastName, email, password, confirmPassword } = userData;
 
     const updateUserData = (event) => {
         const { name, value } = event.target;
@@ -29,23 +34,39 @@ const Signup = () => {
     const signupHandler = async (event, formData) => {
         event.preventDefault();
 
-        const data = await signupService(formData);
-        const { createdUser, encodedToken } = data;
-
         try {
+            const data = await signupService(formData);
+            const { createdUser, encodedToken } = data;
+
             authDispatch(
                 {
                     type: "AUTH_INIT",
-                    payload: data
-                }
+                    payload: {
+                        isAuth: true,
+                        authUser: {...createdUser},
+                        authToken: encodedToken,
+                        authError: null
+                    }
+            
+                }   
             );
 
             localStorage.setItem("auth-token", encodedToken);
             localStorage.setItem("user-data", JSON.stringify(createdUser));
 
-            navigate(location?.state?.form?.pathname, { replace: true });
+            navigate(location?.state?.from ? location.state.from : "/home", {replace: true});
         } catch (error) {
-            console.log(error);
+            console.log("SIGNUP ERROR: ", error);
+
+            localStorage.removeItem("user-data");
+            localStorage.removeItem("auth-token");
+
+            authDispatch(
+                {
+                    ...initialAuthValue,
+                    authError: "Problem occured while signup."
+                }
+            );
         }
         
     }
@@ -56,15 +77,28 @@ const Signup = () => {
                 <h1 className="auth-heading txt-underline txt-center">Sign Up</h1>
 
                 <form className="signup-form">
-                    <label className="auth-label" htmlFor="user-name">
-                        Name:
+                    <label className="auth-label" htmlFor="first-name">
+                        First name:
                         <input
                             className="input input-sq input-br"
-                            id="user-name"
-                            name="name"
+                            id="first-name"
+                            name="firstName"
                             type="text"
                             placeholder="Jane Doe"
-                            value={name}
+                            value={firstName}
+                            required
+                            onChange={(event) => updateUserData(event)}
+                        />
+                    </label>
+                    <label className="auth-label" htmlFor="last-name">
+                        Last name:
+                        <input
+                            className="input input-sq input-br"
+                            id="last-name"
+                            name="lastName"
+                            type="text"
+                            placeholder="Jane Doe"
+                            value={lastName}
                             required
                             onChange={(event) => updateUserData(event)}
                         />
@@ -113,7 +147,7 @@ const Signup = () => {
 
                     <button 
                         className="btn-block btn btn-sq btn-auth btn-primary"
-                        disabled={!name || !email || !password || !confirmPassword || password !== confirmPassword}
+                        disabled={!firstName || !lastName || !email || !password || !confirmPassword || password !== confirmPassword}
                         type="submit"
                         onClick={(event) => signupHandler(event, userData)}
                         // onClick={signupService(userData)}
