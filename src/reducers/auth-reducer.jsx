@@ -5,7 +5,7 @@ const initialAuthValue = {
     authError: null
 }
 
-const authReducerFunction = (authState, {authAction: {type, payload: { isAuth, authUser, authToken, authError }}}) => {
+const authReducerFunction = (authState, {type, payload: { isAuth, authUser, authToken, authError }}) => {
     switch (type) {
         // for login or signup
         case "AUTH_INIT": 

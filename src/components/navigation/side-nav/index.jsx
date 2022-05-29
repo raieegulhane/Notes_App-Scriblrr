@@ -1,7 +1,28 @@
 import "./side-nav.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../contexts/auth-context";
+import { initialAuthValue } from "../../../reducers/auth-reducer";
 
 const SideNav = () => {
+
+    const navigate = useNavigate();
+    const { authDispatch } = useAuth();
+
+    const logoutHandler = () => {
+
+        localStorage.removeItem("auth-token");
+        localStorage.removeItem("user-data");
+
+        authDispatch(
+            {
+                type: "AUTH_CLEAR",
+                payload: {...initialAuthValue}
+            }
+        );
+
+        navigate("/login");
+    }
+
     const getActiveStyle = ({ isActive }) => {
         if (isActive) {
             return ({
@@ -18,7 +39,7 @@ const SideNav = () => {
                     className="page-link flex-row flex_align-middle link-noDecoration" 
                     style={getActiveStyle}
                 >
-                    <i class="fa-solid fa-house"></i>
+                    <i className="fa-solid fa-house"></i>
                     <h2>Home</h2>
                 </NavLink>
                 <NavLink 
@@ -34,7 +55,7 @@ const SideNav = () => {
                     className="page-link flex-row flex_align-middle link-noDecoration"
                     style={getActiveStyle}
                 >
-                    <i class="fa-solid fa-box-archive"></i>
+                    <i className="fa-solid fa-box-archive"></i>
                     <h2>Archive</h2>
                 </NavLink>
                 <NavLink 
@@ -42,19 +63,22 @@ const SideNav = () => {
                     className="page-link flex-row flex_align-middle link-noDecoration"
                     style={getActiveStyle}
                 >
-                    <i class="fa-solid fa-trash-can"></i>
+                    <i className="fa-solid fa-trash-can"></i>
                     <h2>Trash</h2>
                 </NavLink>
             </div>
             <div className="user-operation flex-row flex_align-middle flex_justify-sa">
                 <div className="user-avatar flex-row flex_align-middle">
-                    <div class="avatar-icon avatar-circle avatar-sm avatar-border">                                   
-                        <i class="fa-solid fa-user icon"></i>
+                    <div className="avatar-icon avatar-circle avatar-sm avatar-border">                                   
+                        <i className="fa-solid fa-user icon"></i>
                     </div>
                     <div>Username</div>
                 </div>
-                <button class="btn-icon btn-sq">
-                    <i class="fa-solid fa-arrow-right-from-bracket logout-icon"></i>
+                <button 
+                    className="btn-icon btn-sq"
+                    onClick={logoutHandler}
+                >
+                    <i className="fa-solid fa-arrow-right-from-bracket logout-icon"></i>
                 </button>   
             </div>
         </nav>

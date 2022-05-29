@@ -150,7 +150,6 @@ const Signup = () => {
                         disabled={!firstName || !lastName || !email || !password || !confirmPassword || password !== confirmPassword}
                         type="submit"
                         onClick={(event) => signupHandler(event, userData)}
-                        // onClick={signupService(userData)}
                     >
                         Create Account
                     </button>
@@ -164,7 +163,6 @@ const Signup = () => {
             <p className="alt-auth-prompt txt-center">
                 Already an user? <Link className="auth-redirect txt-bold txt-primary link-noDecoration" to="/login">Login</Link> into your account.
             </p>
-
         </main>
     );
 

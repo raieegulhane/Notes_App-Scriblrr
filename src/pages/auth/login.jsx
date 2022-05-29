@@ -46,7 +46,7 @@ const Login = () => {
             localStorage.setItem("auth-token", encodedToken);
             localStorage.setItem("user-data", JSON.stringify(foundUser));
 
-            navigate(location?.state?.from ? location.state.from : "/" , {replace: true});
+            navigate(location?.state?.from ? location.state.from : "/home" , {replace: true});
         } catch (error) {
             console.log("LOGIN ERROR", error);
 
@@ -118,7 +118,6 @@ const Login = () => {
             <p className="alt-auth-prompt txt-center">
                 New user? <Link className="auth-redirect txt-bold txt-primary link-noDecoration" to="/signup">Sign Up</Link> here.
             </p>
-
         </main>
     );
 }
