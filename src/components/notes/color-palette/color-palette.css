@@ -1,0 +1,34 @@
+.palette-wrapper {
+    background-color: var(--secondary-grey);
+    gap: 1rem;
+    padding: 0.25rem 1rem;
+    border-radius: var(--br-sq);
+    margin: 1rem;
+}
+
+.colors-container {
+    gap: 0.5rem;
+}
+
+.color-item {
+    height: 2.5rem;
+    width: 2.5rem;
+    border: 2px solid var(--white);
+    border-radius: var(--br-rd);
+    cursor: pointer;
+}
+
+.color-item:hover {
+    border-color: var(--app-content-grey);
+}
+
+.btn-icon {
+    color: var(--app-content-grey);
+}
+
+.btn-icon:hover {
+    background-color: transparent;
+    color: var(--app-content-grey);
+    font-size: 1.65rem;
+}
+
