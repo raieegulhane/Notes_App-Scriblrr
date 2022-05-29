@@ -14,7 +14,7 @@ const PrivateRoutes = () => {
                     <Outlet />
                 </main>    
             ) : (
-                <Navigate to="/login" state={{from: location}} replace/>
+                <Navigate to="/login"/>
             )
     );
 }

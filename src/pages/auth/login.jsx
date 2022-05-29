@@ -9,7 +9,7 @@ const Login = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const { isAuth, authDispatch } = useAuth();
+    const { isAuth, authError, authDispatch } = useAuth();
 
     useEffect(() => {
         isAuth && navigate(location?.state?.from ? location.state.from : "/home", { replace: true });
@@ -55,10 +55,14 @@ const Login = () => {
 
             authDispatch(
                 {
-                    ...initialAuthValue, 
-                    authError: "Problem occured while loging in"
+                    type: "AUTH_INIT",
+                    payload: {
+                        ...initialAuthValue,
+                        authError: "Problem occured while loging in"
+                    } 
                 }
             );
+
         }
     }
 
@@ -108,6 +112,8 @@ const Login = () => {
                     >
                         Continue as Guest
                     </button>
+
+                    {authError && <p>{authError}</p>}
                 </form>
 
                 <p className="terms-declaration txt-sm txt-center">
