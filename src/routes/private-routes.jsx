@@ -4,7 +4,6 @@ import { SideNav } from "../components";
 
 const PrivateRoutes = () => {
     const { isAuth } = useAuth();
-    const location = useLocation();
 
     return (
         isAuth ? 

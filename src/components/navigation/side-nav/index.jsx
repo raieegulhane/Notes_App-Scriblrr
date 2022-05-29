@@ -47,7 +47,7 @@ const SideNav = () => {
                     className="page-link flex-row flex_align-middle link-noDecoration"
                     style={getActiveStyle}
                 >
-                    <i class="fa-solid fa-tag"></i>
+                    <i className="fa-solid fa-tag"></i>
                     <h2>Labels</h2>
                 </NavLink>
                 <NavLink 
