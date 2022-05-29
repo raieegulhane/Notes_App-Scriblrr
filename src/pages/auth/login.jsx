@@ -35,7 +35,7 @@ const Login = () => {
                     type: "AUTH_INIT",
                     payload: {
                         isAuth: true,
-                        authUser: { ... foundUser },
+                        authUser: { ...foundUser },
                         authToken: encodedToken,
                         authError: null
                     }

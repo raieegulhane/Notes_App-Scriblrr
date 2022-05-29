@@ -1,4 +1,4 @@
-import { Outlet, Navigate, useLocation } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom";
 import { useAuth } from "../contexts/auth-context";
 import { SideNav } from "../components";
 
