@@ -1,9 +1,9 @@
-import { SecondaryNav } from "../../components";
+import { NoteCard } from "../../components";
 
 const Home = () => {
     return(
         <div>
-            <SecondaryNav />
+            <NoteCard />
         </div>
     );
 }
