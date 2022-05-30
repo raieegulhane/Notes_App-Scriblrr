@@ -1,10 +1,9 @@
-import { NoteInputForm } from "../../components";
+import { SecondaryNav } from "../../components";
 
 const Home = () => {
     return(
         <div>
-            <NoteInputForm />
-
+            <SecondaryNav />
         </div>
     );
 }
