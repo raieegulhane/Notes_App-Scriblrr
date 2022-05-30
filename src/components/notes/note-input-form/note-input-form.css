@@ -1,0 +1,45 @@
+.note-input-wrapper {
+    position: relative;
+    height: fit-content;
+    min-width: 50%;
+    padding: 1rem;
+    border-radius: var(--br-sq);
+    margin: 1rem;
+    box-shadow: 0px 1px 7px rgba(0 0 0 / 15%);
+}
+
+.note-title {
+    padding: 1rem;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid var(--grey);
+    margin-bottom: 1rem;
+}
+
+.note-title::placeholder {
+    color: var(--secondary-grey);
+}
+
+.note-title:focus {
+    outline: none;
+}
+
+.btn-icon {
+    font-size: 1rem;
+}
+
+.btn-icon:hover {
+    font-size: 1.2rem;
+}
+
+.btn-close {
+    position: absolute;
+    top: 0rem;
+    right: 0rem;
+}
+
+.btn.btn-primary.btn-add-note {
+    font-size: 0.75rem;
+    margin: 0 1rem;
+}
