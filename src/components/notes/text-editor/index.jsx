@@ -1,6 +1,6 @@
-import "./text-editor.css";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
+import "./text-editor.css";
   
 const modules = {
     toolbar: [

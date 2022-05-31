@@ -1,7 +1,17 @@
 .note-input-wrapper {
+    background-color: rgba(0 0 0 / 70%);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.note-input-container {
     position: relative;
+    background-color: var(--white);
     height: fit-content;
-    min-width: 50%;
+    max-width: 750px;
     padding: 1rem;
     border-radius: var(--br-sq);
     margin: 1rem;
@@ -26,11 +36,11 @@
 }
 
 .btn-icon.editor-btn {
-    font-size: 1rem;
+    font-size: 1.25rem;
 }
 
 .btn-icon:hover {
-    font-size: 1.2rem;
+    font-size: 1.35rem;
 }
 
 .btn-close {
@@ -39,7 +49,20 @@
     right: 0rem;
 }
 
+.btn.btn-icon.btn-close {
+    font-size: 1rem;
+}
+
+.btn.btn-icon.btn-close:hover {
+    font-size: 1.1rem;
+}
+
 .btn.btn-primary.btn-add-note {
     font-size: 0.75rem;
     margin: 0 1rem;
+}
+
+.priority-list-toggle {
+    border-radius: var(--br-cr);
+    box-shadow: 0px 1px 7px rgba(0 0 0 / 15%);
 }

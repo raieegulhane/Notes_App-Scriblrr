@@ -1,5 +1,6 @@
 @import url("https://matrixui.netlify.app/assets/stylesheet.css");
 @import url("./variables.css");
+@import url("../components/notes/note-input-form/note-input-form.css");
 
 body {
     background-color: var(--white);
