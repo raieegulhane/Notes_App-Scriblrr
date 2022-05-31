@@ -1,3 +1,4 @@
+import "../../src/styles/main.css"
 import { Outlet, Navigate } from "react-router-dom";
 import { useAuth } from "../contexts/auth-context";
 import { SideNav } from "../components";
@@ -8,7 +9,7 @@ const PrivateRoutes = () => {
     return (
         isAuth ? 
             (
-                <main className="main-content-wrapper flex-row">
+                <main className="wrapper-main grid">
                     <SideNav />
                     <Outlet />
                 </main>    

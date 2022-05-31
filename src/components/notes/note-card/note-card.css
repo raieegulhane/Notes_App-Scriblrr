@@ -1,0 +1,41 @@
+.note-card-wrapper {
+    position: relative;
+    border: 1px solid var(--secondary-grey);
+    border-radius: 1rem;
+    margin: 2rem;
+}
+
+.editor-btn.pin-btn {
+    font-size: 1.25rem;
+}
+
+.pin-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.note-content-display {
+    padding: 1rem 1.5rem;
+}
+
+.edit-panel {
+    margin: 0 0.5rem;
+}
+
+.card-btn-hidden {
+    opacity: 0;
+    transition: 0.5s ease;
+}
+
+.card-btn-visible {
+    opacity: 1;
+    transition: 0.5s ease;
+}
+
+.editor-btn.card-btn {
+    width: 2.5rem;
+    padding: 0.25rem;
+}
+
+

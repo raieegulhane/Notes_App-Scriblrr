@@ -1,0 +1,25 @@
+.quill {
+    margin-bottom: 1rem;
+}
+
+.ql-toolbar.ql-snow {
+    background-color: var(--primary-grey);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-top-left-radius: var(--br-sq);
+    border-top-right-radius: var(--br-sq);
+}
+
+.ql-container.ql-snow {
+    font-family: var(--text-font);
+    font-size: 1rem;
+    color: var(--text-color);
+    caret-color: var(--secondary-grey);
+    border-bottom-left-radius: var(--br-sq);
+    border-bottom-right-radius: var(--br-sq);
+}
+
+.ql-editor.ql-blank::before {
+    color: var(--secondary-grey);
+}

@@ -1,0 +1,14 @@
+.priority-list-wrapper {
+    padding: 0 1rem;
+}
+.priority-option {
+    background-color: transparent;
+    color: var(--app-content-grey);
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+.priority-option:hover {
+    color: var(--grey3);
+}
