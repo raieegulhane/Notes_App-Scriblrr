@@ -1,0 +1,37 @@
+.label-editor-wrapper {
+    position: absolute;
+    top: 90%;
+    right: 0;
+    left: 0;
+    background-color: var(--text-color);
+    padding: 1rem;
+    border-radius: var(--br-sq);
+    margin: 1rem;
+    box-shadow: 0px 1px 7px rgba(0 0 0 / 15%);
+}
+
+.label-add-container {
+    padding: 1rem;
+}
+
+.input.label-input {
+    background-color: var(--text-grey);
+    color: var(--primary-grey);
+    font-size: 0.75rem;
+    width: 75%;
+    padding: 0.2rem, 1.5rem;
+}
+
+.add-label-btn {
+    margin-left: auto;
+}
+
+.label-chips-container {
+    border-top: 1px solid var(--grey4);
+    padding: 1rem;
+    margin: 0.5rem;
+}
+
+.label-chips-heading {
+    padding-bottom: 1rem;
+}

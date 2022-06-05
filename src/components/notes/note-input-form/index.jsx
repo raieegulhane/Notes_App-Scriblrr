@@ -4,11 +4,12 @@ import { useComponent } from "../../../contexts/component-context";
 import { RichTextEditor } from "../text-editor";
 import { ColorPalette } from "../color-palette";
 import { PriorityList } from "../priority-list";
+import { LabelEditor } from "../../label-editor";
 import { useState } from "react";
 
 const NoteInputForm = () => {
     const { state: componentState, dispatch: componentDispatch } = useComponent();
-    const { showColorPalette, showPriorityOptions } = componentState;
+    const { showColorPalette, showPriorityOptions, showLabelEditor } = componentState;
 
     const initialNoteValues = {
         noteTitle: "",
@@ -89,7 +90,10 @@ const NoteInputForm = () => {
                             >
                                 <i className="fa-solid fa-palette"></i>
                             </button>
-                            <button className="btn btn-icon editor-btn">
+                            <button 
+                                className="btn btn-icon editor-btn"
+                                onClick={() => componentDispatch({type: "SHOW_LABEL_EDITOR"})}
+                            >
                                 <i className="fa-solid fa-tag"></i>
                             </button>
                             <div className={`${showPriorityOptions ? "priority-list-toggle" : ""} flex-row flex_align-middle`}>
@@ -117,6 +121,12 @@ const NoteInputForm = () => {
                         {
                             showColorPalette &&
                             <ColorPalette
+                                onClick={updateNoteValues}
+                            />
+                        }
+                        {
+                            showLabelEditor &&
+                            <LabelEditor
                                 onClick={updateNoteValues}
                             />
                         }
