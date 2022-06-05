@@ -8,7 +8,7 @@ import { LabelEditor } from "../../label-editor";
 import { useState } from "react";
 
 const NoteInputForm = () => {
-    const { state: componentState, dispatch: componentDispatch } = useComponent();
+    const { componentState, componentDispatch } = useComponent();
     const { showColorPalette, showPriorityOptions, showLabelEditor } = componentState;
 
     const initialNoteValues = {
@@ -16,7 +16,11 @@ const NoteInputForm = () => {
         noteBody: "",
         noteColor: "#ffffff",
         notePriority: "Low",
-        isPinned: false
+        noteLabels: [],
+        isPinned: false,
+        isEditing: false,
+        isArchived: false,
+        isDeleted: false,
     }
 
     const [noteValues, setNoteValues] = useState(initialNoteValues);

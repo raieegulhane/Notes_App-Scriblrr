@@ -2,9 +2,9 @@ import "./color-palette.css";
 import { colorsArray } from "./colors";
 import { useComponent } from "../../../contexts/component-context";
 
-const ColorPalette = ({ name, onClick}) => {
+const ColorPalette = ({ onClick}) => {
 
-    const { dispatch: componentDispatch } = useComponent();
+    const { componentDispatch } = useComponent();
 
     return(
         <div className="palette-wrapper flex-row flex_justify-sb flex_align-middle">

@@ -4,8 +4,8 @@ import { SortDropdown, FilterDropdown } from "../dropdowns";
 
 const SecondaryNav = () => {
 
-    const { state: componentState, dispatch: componentDispatch } = useComponent();
-    const { showFilterDropdown, showSortDropdown, showTextEditor } = componentState;
+    const { componentState, componentDispatch } = useComponent();
+    const { showFilterDropdown, showSortDropdown } = componentState;
 
     return(
         <div className="sec-nav-wrapper">

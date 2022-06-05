@@ -3,7 +3,7 @@ import { useComponent } from "../../contexts/component-context";
 
 const FilterDropdown = () => {
 
-    const { dispatch: componentDispatch } = useComponent();
+    const { componentDispatch } = useComponent();
 
     return(
         <div className="dropdown-container flex-col flex_justify-start">
@@ -46,7 +46,7 @@ const FilterDropdown = () => {
 
 const SortDropdown = () => {
 
-    const { dispatch: componentDispatch } = useComponent();
+    const { componentDispatch } = useComponent();
 
     return(
         <div className="dropdown-container flex-col flex_justify-start">

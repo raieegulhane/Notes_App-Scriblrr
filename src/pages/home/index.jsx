@@ -3,7 +3,7 @@ import { useComponent } from "../../contexts/component-context";
 import { SecondaryNav, ColorPalette, NoteInputForm, NoteCard } from "../../components";
 
 const Home = () => {
-    const { state: componentState } = useComponent();
+    const { componentState } = useComponent();
     return(
         <div>
             <SecondaryNav />

@@ -4,11 +4,11 @@ import { initialComponentValues, componentReducer } from "../reducers/component-
 const ComponentContext = createContext(initialComponentValues);
 
 const ComponentProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(componentReducer, initialComponentValues);
+    const [componentState, componentDispatch] = useReducer(componentReducer, initialComponentValues);
 
     return(
         <ComponentContext.Provider
-            value={{ state, dispatch }}
+            value={{ componentState, componentDispatch }}
         >
             { children }
         </ComponentContext.Provider>

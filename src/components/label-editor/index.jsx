@@ -2,7 +2,7 @@ import "./label-editor.css";
 import { useComponent } from "../../contexts/component-context";
 
 const LabelEditor = () => {
-    const { dispatch: componentDispatch } = useComponent();
+    const { componentDispatch } = useComponent();
 
     return(
         <div className="label-editor-wrapper">
