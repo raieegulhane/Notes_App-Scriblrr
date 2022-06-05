@@ -12,10 +12,19 @@
     background-color: var(--white);
     height: fit-content;
     max-width: 750px;
-    padding: 1rem;
     border-radius: var(--br-sq);
     margin: 1rem;
     box-shadow: 0px 1px 7px rgba(0 0 0 / 15%);
+}
+
+.note-input {
+    padding: 1rem 1rem 0;
+    border-top-left-radius: var(--br-sq); 
+    border-top-right-radius: var(--br-sq);
+}
+
+.note-input-btn-panel {
+    padding: 0.25rem 0.5rem 0.75rem;
 }
 
 .note-title {
@@ -65,4 +74,8 @@
 .priority-list-toggle {
     border-radius: var(--br-cr);
     box-shadow: 0px 1px 7px rgba(0 0 0 / 15%);
+}
+
+.pin-icon-selected {
+    color: var(--primary-color-highlight);
 }

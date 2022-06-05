@@ -2,7 +2,7 @@ import "./color-palette.css";
 import { colorsArray } from "./colors";
 import { useComponent } from "../../../contexts/component-context";
 
-const ColorPalette = () => {
+const ColorPalette = ({ name, onClick}) => {
 
     const { dispatch: componentDispatch } = useComponent();
 
@@ -11,12 +11,15 @@ const ColorPalette = () => {
             <div className="colors-container flex-row">
                 {colorsArray.map(({ id, color }) => {
                     return(
-                        <div 
-                            key={ id }
+                        <button
+                            key={id}
                             className="color-item"
                             style={{ backgroundColor: color }}
+                            name="noteColor"
+                            value={color}
+                            onClick={onClick}
                         >
-                        </div>
+                        </button>
                     );
                 })}
             </div>

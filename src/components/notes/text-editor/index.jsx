@@ -25,13 +25,15 @@ const formats = [
     'link', 'image'
 ];
 
-const RichTextEditor = () => {
+const RichTextEditor = ({ value, onChange }) => {
     return(
         <ReactQuill 
             theme="snow"
             modules={modules}
             formats={formats}
             placeholder="Take a note..."
+            value={value}
+            onChange={onChange}
         />
     );
 }
