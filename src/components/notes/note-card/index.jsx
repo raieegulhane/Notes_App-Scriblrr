@@ -43,7 +43,7 @@ const NoteCard = () => {
                     className="btn btn-icon editor-btn card-btn "
                     onClick={() => setEditorVisibility(!editorVisibility)}
                 >
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                    <i className="fa-solid fa-ellipsis-vertical"></i>
                 </button>
             </div>
         </div>

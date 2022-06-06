@@ -11,7 +11,7 @@ const FilterDropdown = () => {
                 className="btn btn-icon btn-close"
                 onClick={() => componentDispatch({type: "SHOW_FILTER_DROPDOWN"})}
             >
-                <i class="fa-solid fa-xmark"></i>
+                <i className="fa-solid fa-xmark"></i>
             </button>
             <div className="dropdown-section flex-col flex_justify-start">
                 <h4>Date:</h4>
@@ -54,7 +54,7 @@ const SortDropdown = () => {
                 className="btn btn-icon btn-close"
                 onClick={() => componentDispatch({type: "SHOW_SORT_DROPDOWN"})}
             >
-                <i class="fa-solid fa-xmark"></i>
+                <i className="fa-solid fa-xmark"></i>
             </button>
             <div className="dropdown-section flex-col flex_justify-start">
                 <h4>Date:</h4>

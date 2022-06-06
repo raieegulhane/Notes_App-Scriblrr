@@ -1,5 +1,4 @@
 import "./note-input-form.css";
-import "../text-editor/text-editor.css";
 import { useComponent } from "../../../contexts/component-context";
 import { RichTextEditor } from "../text-editor";
 import { ColorPalette } from "../color-palette";
@@ -43,10 +42,8 @@ const NoteInputForm = () => {
         setNoteValues((noteValues) => ({ ...noteValues, noteBody: value}));
     }
 
-    const updateNoteLabels = (event) => {
-        const { value } = event.target;
-        setNoteValues((noteValues) => ({ ...noteValues, noteLabels: [...noteLabels, value]}))
-        console.log(noteLabels);
+    const updateNoteLabels = (labelId, labelValue) => {
+        setNoteValues((noteValues) => ({ ...noteValues, noteLabels: [...noteLabels, { id: labelId, value: labelValue }]}))
     }
 
     const updatePinnedStatus = () => {
@@ -65,7 +62,7 @@ const NoteInputForm = () => {
                         className="btn btn-icon btn-close"
                         onClick={() => componentDispatch({type: "SHOW_TEXT_EDITOR"})}
                     >
-                        <i class="fa-solid fa-xmark"></i>
+                        <i className="fa-solid fa-xmark"></i>
                     </button>
 
                     <div
@@ -113,7 +110,7 @@ const NoteInputForm = () => {
                                     className="btn btn-icon editor-btn"
                                     onClick={() => componentDispatch({type: "SHOW_PRIORITY_OPTIONS"})}
                                 >
-                                    <i class="fa-solid fa-circle-exclamation"></i>
+                                    <i className="fa-solid fa-circle-exclamation"></i>
                                 </button>
                                 {
                                     showPriorityOptions &&

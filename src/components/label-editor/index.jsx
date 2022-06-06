@@ -49,7 +49,7 @@ const LabelEditor = ({ onClick }) => {
                                 <button 
                                     key = {id}
                                     className="label-chip btn btn-primary btn-cr"
-                                    onClick={onClick}
+                                    onClick={() => onClick(id, labelValue)}
                                 >
                                     {labelValue}
                                 </button>
