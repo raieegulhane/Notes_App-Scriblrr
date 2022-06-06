@@ -34,8 +34,8 @@ const Labels = () => {
 
     return(
         <div className="label-page-wrapper">
-            <div className="add-label-bar">
-                <div className="sec-nav-container flex-row flex_justify-center flex_align-middle">
+            <div className="flex-row flex_justify-center">
+                <div className="add-label-bar flex-row flex_justify-center flex_align-middle">
                     <input
                         className="add-label-input input input-rd" 
                         type="text"

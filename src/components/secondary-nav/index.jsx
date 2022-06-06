@@ -8,7 +8,7 @@ const SecondaryNav = () => {
     const { showFilterDropdown, showSortDropdown } = componentState;
 
     return(
-        <div className="sec-nav-wrapper">
+        <div className="sec-nav-wrapper flex-row flex_justify-center">
             <div className="sec-nav-container flex-row flex_justify-center flex_align-middle">
                 <div className="search-input-container flex-row flex_justify-sb input-rd">
                     <button className="search-btn btn btn-rd">

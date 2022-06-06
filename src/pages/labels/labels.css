@@ -1,7 +1,12 @@
+.add-label-bar {
+    position: fixed;
+    padding: 2rem;
+}
+
 .input.add-label-input {
     background-color: var(--grey2);
     color: var(--text-color);
-    min-width: 50%;
+    width: 500px;
     padding-right: 2rem;
     padding-left: 2rem;
     border: none;
