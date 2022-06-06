@@ -3,18 +3,22 @@ import { useComponent } from "../../contexts/component-context";
 import { useNote } from "../../contexts/note-context";
 import { useState } from "react";
 
-const LabelEditor = () => {
+const LabelEditor = ({ onClick }) => {
     const { componentDispatch } = useComponent();
     const { noteState, noteDispatch } = useNote();
     const { allLabels } = noteState;
 
-    const [newLabel, setNewLAbel] = useState("");
+    const [newLabel, setNewLabel] = useState("");
 
-    const addNewLabel = () => {
-        noteDispatch({ type: "ADD_NEW_LABEL", payload: newLabel });
-        setNewLAbel("");
+    const addNewLabel = (event) => {
+        const { value } = event.target;
+        if (event.key === "Enter" && value) {
+            noteDispatch({ type: "ADD_NEW_LABEL", payload: newLabel });
+            setNewLabel("");
+        }
     }
 
+    
     return(
         <div className="label-editor-wrapper">
             <button 
@@ -28,17 +32,11 @@ const LabelEditor = () => {
                 <input
                     className="label-input input input-rd"
                     type="text"
-                    placeholder="Enter label name..."
+                    placeholder="Enter label name and press enter to add..."
                     value={newLabel}
-                    onChange={(event) => setNewLAbel(event.target.value)}
+                    onChange={(event) => setNewLabel(event.target.value)}
+                    onKeyDown={addNewLabel}
                 />
-
-                <button 
-                    className="add-label-btn btn btn-primary btn-cr btn-add-note"
-                    onClick={addNewLabel}
-                >
-                    Add Label
-                </button>
             </div>
 
             <div className="labels-container">
@@ -46,12 +44,14 @@ const LabelEditor = () => {
 
                 <div className="label-chip-container">
                     {
-                        allLabels.map((label) => {
+                        allLabels.map(({ id, labelValue }) => {
                             return(
                                 <button 
+                                    key = {id}
                                     className="label-chip btn btn-primary btn-cr"
+                                    onClick={onClick}
                                 >
-                                    {label}
+                                    {labelValue}
                                 </button>
                             );
                         })

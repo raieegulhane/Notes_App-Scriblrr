@@ -46,6 +46,7 @@ const NoteInputForm = () => {
     const updateNoteLabels = (event) => {
         const { value } = event.target;
         setNoteValues((noteValues) => ({ ...noteValues, noteLabels: [...noteLabels, value]}))
+        console.log(noteLabels);
     }
 
     const updatePinnedStatus = () => {
