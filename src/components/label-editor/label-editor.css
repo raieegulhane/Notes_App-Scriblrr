@@ -26,12 +26,29 @@
     margin-left: auto;
 }
 
-.label-chips-container {
+.labels-container {
     border-top: 1px solid var(--grey4);
-    padding: 1rem;
+    padding: 1rem 1rem 0;
     margin: 0.5rem;
 }
 
-.label-chips-heading {
+.labels-heading {
     padding-bottom: 1rem;
+}
+
+.label-chip-container {
+    max-height: 85px;
+    overflow-y: auto;
+}
+
+.btn.btn-primary.label-chip {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    font-size: 0.75rem;
+    border: none;
+    margin: 0.25rem;
+}
+
+.btn.btn-primary.label-chip:hover {
+    background-color: var(--secondary-color);
 }

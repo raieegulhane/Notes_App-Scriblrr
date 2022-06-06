@@ -29,7 +29,9 @@ const NoteInputForm = () => {
         noteTitle,
         noteBody,
         noteColor,
-        isPinned
+        noteLabels,
+        isPinned,
+        isEditing
     } = noteValues;
 
     const updateNoteValues = (event) => {
@@ -39,6 +41,11 @@ const NoteInputForm = () => {
 
     const updateNoteBody = (value) => {
         setNoteValues((noteValues) => ({ ...noteValues, noteBody: value}));
+    }
+
+    const updateNoteLabels = (event) => {
+        const { value } = event.target;
+        setNoteValues((noteValues) => ({ ...noteValues, noteLabels: [...noteLabels, value]}))
     }
 
     const updatePinnedStatus = () => {
@@ -118,7 +125,7 @@ const NoteInputForm = () => {
 
                         <div className="note-input-action flex-row flex_align-middle">
                             <button className="btn btn-cr btn-primary btn-add-note">
-                                Add Note
+                                { isEditing ? "Edit Note" : "Add Note" }
                             </button>
                         </div>
 
@@ -131,7 +138,7 @@ const NoteInputForm = () => {
                         {
                             showLabelEditor &&
                             <LabelEditor
-                                onClick={updateNoteValues}
+                                onClick={updateNoteLabels}
                             />
                         }
                     </div>

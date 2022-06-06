@@ -4,7 +4,8 @@ const initialComponentValues = {
     showFilterDropdown: false,
     showSortDropdown: false,
     showPriorityOptions: false,
-    showLabelEditor: false
+    showLabelEditor: false,
+    showLabelDeleteConfirmation: false,
 }
 
 const componentReducer = (state, action) => {
@@ -14,7 +15,8 @@ const componentReducer = (state, action) => {
         showFilterDropdown,
         showSortDropdown,
         showPriorityOptions,
-        showLabelEditor
+        showLabelEditor,
+        showLabelDeleteConfirmation
     } = state;
 
     switch(action.type) {
@@ -34,7 +36,10 @@ const componentReducer = (state, action) => {
             return({ ...state, showPriorityOptions: !showPriorityOptions });
 
         case "SHOW_LABEL_EDITOR": 
-            return({ ...state, showLabelEditor: !showLabelEditor})
+            return({ ...state, showLabelEditor: !showLabelEditor});
+
+        case "SHOW_LABEL_DELETE_CONFIRMATION": 
+            return({ ...state, showLabelDeleteConfirmation: !showLabelDeleteConfirmation});
 
         default: 
             return({ ...initialComponentValues });

@@ -1,8 +1,19 @@
 import "./label-editor.css";
 import { useComponent } from "../../contexts/component-context";
+import { useNote } from "../../contexts/note-context";
+import { useState } from "react";
 
 const LabelEditor = () => {
     const { componentDispatch } = useComponent();
+    const { noteState, noteDispatch } = useNote();
+    const { allLabels } = noteState;
+
+    const [newLabel, setNewLAbel] = useState("");
+
+    const addNewLabel = () => {
+        noteDispatch({ type: "ADD_NEW_LABEL", payload: newLabel });
+        setNewLAbel("");
+    }
 
     return(
         <div className="label-editor-wrapper">
@@ -18,18 +29,34 @@ const LabelEditor = () => {
                     className="label-input input input-rd"
                     type="text"
                     placeholder="Enter label name..."
+                    value={newLabel}
+                    onChange={(event) => setNewLAbel(event.target.value)}
                 />
 
                 <button 
                     className="add-label-btn btn btn-primary btn-cr btn-add-note"
+                    onClick={addNewLabel}
                 >
                     Add Label
                 </button>
             </div>
 
-            <div className="label-chips-container">
-                <h5 className="label-chips-heading">All Labels:</h5>
+            <div className="labels-container">
+                <h5 className="labels-heading">Click on labels to select...</h5>
 
+                <div className="label-chip-container">
+                    {
+                        allLabels.map((label) => {
+                            return(
+                                <button 
+                                    className="label-chip btn btn-primary btn-cr"
+                                >
+                                    {label}
+                                </button>
+                            );
+                        })
+                    }
+                </div>
             </div>
         </div>
     );

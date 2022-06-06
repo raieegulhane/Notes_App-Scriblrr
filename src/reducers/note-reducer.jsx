@@ -1,16 +1,28 @@
 const initialNotesData = {
     allNotes: [],
-    archive: [],
-    trash: [],
-    pinned: [],
-    labels: [],
+    archivedNotes: [],
+    deletedNotes: [],
+    pinnedNotes: [],
+    allLabels: [],
 };
 
-const noteReducer = () => {
-    
+const noteReducer = (state, { type, payload }) => {
+    const { allNotes, archivedNotes, deletedNotes, pinnedNotes, allLabels } = state;
 
-    // default:
-        return({ ...initialNotesData });
+    switch(type) {
+        case "ADD_NEW_LABEL":
+            return allLabels.findIndex((label) => label === payload) < 0 ? 
+                { ...state, allLabels: [ ...allLabels, payload ]} :
+                {...state};
+
+        case "DELETE_LABEL":
+            return({ ...state, allLabels: allLabels.filter((label) => label !== payload) });
+
+        default:
+            return({ ...initialNotesData });
+    }    
+
+    
 
 }
 
