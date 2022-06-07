@@ -1,7 +1,8 @@
 import "./note-card.css";
+import parse from 'html-react-parser';
 import { useState } from "react";
 
-const NoteCard = () => {
+const NoteCard = ({ noteTitle, noteBody, noteColor }) => {
 
     const [editorVisibility, setEditorVisibility] = useState(false);
 
@@ -13,25 +14,21 @@ const NoteCard = () => {
     }
 
     return(
-        <div className="note-card-wrapper">
+        <div 
+            style={{ backgroundColor: noteColor }}
+            className="note-card-wrapper flex-col flex_justify-sb">
             <button className={`btn btn-icon editor-btn pin-btn ${showCardButtons()}`}>
                 <i className="fa-solid fa-thumbtack"></i>
             </button>
 
             <div className="note-content-display">
-                <h3 className="note-card-title">Heading</h3>
-                <p>Content</p>
+                <h3 className="note-card-title">{noteTitle}</h3>
+                <div>{parse(`${noteBody}`)}</div>
             </div>
             
             <div className="edit-panel flex-row flex_align-middle">
                 <button className={`btn btn-icon editor-btn card-btn ${showCardButtons()}`}>
                     <i className="fa-solid fa-pen"></i>
-                </button>
-                <button className={`btn btn-icon editor-btn card-btn ${showCardButtons()}`}>
-                    <i className="fa-solid fa-palette"></i>
-                </button>
-                <button className={`btn btn-icon editor-btn card-btn ${showCardButtons()}`}>
-                    <i className="fa-solid fa-tag"></i>
                 </button>
                 <button className={`btn btn-icon editor-btn card-btn ${showCardButtons()}`}>
                     <i className="fa-solid fa-box-archive"></i>

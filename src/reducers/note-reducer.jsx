@@ -9,9 +9,15 @@ const initialNotesData = {
 };
 
 const noteReducer = (state, { type, payload }) => {
-    const { allNotes, archivedNotes, deletedNotes, pinnedNotes, allLabels } = state;
+    const { allLabels } = state;
 
-    switch(type) {
+    switch(type) { 
+        case "SET_NOTES": 
+        return({ ...state, allNotes: payload });
+
+        case "GET_NOTES": 
+            return({ ...state, allNotes: payload });
+
         case "ADD_NEW_LABEL":
             return allLabels.findIndex(({ labelValue }) => labelValue === payload) < 0 ? 
                 { ...state, allLabels: [ ...allLabels, {id: uuid(), labelValue: payload} ]} :

@@ -1,9 +1,17 @@
 .note-card-wrapper {
     position: relative;
-    width: fit-content;
-    border: 1px solid var(--secondary-grey);
+    color: var(--text-color);
+    width: 250px;
+    height: 200px;
+    border: 1px solid var(--grey);
     border-radius: 1rem;
-    margin: 2rem;
+    margin: 1rem;
+    overflow-y: auto;
+}
+
+.note-card-wrapper:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 2px 3px rgba(0 0 0 / 20%);
 }
 
 .editor-btn.pin-btn {
@@ -38,5 +46,3 @@
     width: 2.5rem;
     padding: 0.25rem;
 }
-
-

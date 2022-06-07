@@ -5,8 +5,16 @@ import { ColorPalette } from "../color-palette";
 import { PriorityList } from "../priority-list";
 import { LabelEditor } from "../../label-editor";
 import { useState } from "react";
+import { postNoteService } from "../../../services/notes-services/post-note-service";
+import { useAuth } from "../../../contexts/auth-context";
+import { useNote } from "../../../contexts/note-context";
+import { editNoteService } from "../../../services/notes-services/edit-note-service";
 
 const NoteInputForm = () => {
+    const { authToken } = useAuth();
+
+    const { noteDispatch } = useNote();
+
     const { componentState, componentDispatch } = useComponent();
     const { showColorPalette, showPriorityOptions, showLabelEditor } = componentState;
 
@@ -18,6 +26,7 @@ const NoteInputForm = () => {
         noteLabels: [],
         isPinned: false,
         isEditing: false,
+        isEditingId: "",
         isArchived: false,
         isDeleted: false,
     }
@@ -35,19 +44,31 @@ const NoteInputForm = () => {
 
     const updateNoteValues = (event) => {
         const { name, value } = event.target;
-        setNoteValues((noteValues) => ({ ...noteValues, [name]: value }));
+        setNoteValues((prevNoteValues) => ({ ...prevNoteValues, [name]: value }));
     }
 
     const updateNoteBody = (value) => {
-        setNoteValues((noteValues) => ({ ...noteValues, noteBody: value}));
+        setNoteValues((prevNoteValues) => ({ ...prevNoteValues, noteBody: value}));
     }
 
     const updateNoteLabels = (labelId, labelValue) => {
-        setNoteValues((noteValues) => ({ ...noteValues, noteLabels: [...noteLabels, { id: labelId, value: labelValue }]}))
+        setNoteValues((prevNoteValues) => ({ ...prevNoteValues, noteLabels: [...noteLabels, { id: labelId, value: labelValue }]}))
     }
 
     const updatePinnedStatus = () => {
         setNoteValues({ ...noteValues, isPinned: !noteValues.isPinned});
+    }
+
+    const addNewNote = async () => {
+        try {
+            
+            const { data: { notes }} = await postNoteService(noteValues, authToken);
+
+            noteDispatch({ type: "SET_NOTES", payload: notes});
+            componentDispatch({ type: "SHOW_TEXT_EDITOR" });
+        } catch (error) {
+            console.log("ADD_NEW_NOTE_ERROR: ", error);
+        }
     }
 
 
@@ -122,7 +143,10 @@ const NoteInputForm = () => {
                         </div>
 
                         <div className="note-input-action flex-row flex_align-middle">
-                            <button className="btn btn-cr btn-primary btn-add-note">
+                            <button 
+                                className="btn btn-cr btn-primary btn-add-note"
+                                onClick={addNewNote}
+                            >
                                 { isEditing ? "Edit Note" : "Add Note" }
                             </button>
                         </div>
