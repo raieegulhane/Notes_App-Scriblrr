@@ -6,6 +6,8 @@ const initialNotesData = {
     deletedNotes: [],
     pinnedNotes: [],
     allLabels: [],
+    isEditing: false,
+    isEditingId: ""
 };
 
 const noteReducer = (state, { type, payload }) => {
@@ -17,6 +19,9 @@ const noteReducer = (state, { type, payload }) => {
 
         case "GET_NOTES": 
             return({ ...state, allNotes: payload });
+
+        case "EDIT_NOTE": 
+            return({ ...state, isEditing: payload.editNoteStatus, isEditingId: payload.editNoteId })
 
         case "ADD_NEW_LABEL":
             return allLabels.findIndex(({ labelValue }) => labelValue === payload) < 0 ? 

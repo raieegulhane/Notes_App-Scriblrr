@@ -1,16 +1,25 @@
 import "./note-card.css";
 import parse from 'html-react-parser';
 import { useState } from "react";
+import { useComponent } from "../../../contexts/component-context";
+import { useNote } from "../../../contexts/note-context";
 
-const NoteCard = ({ noteTitle, noteBody, noteColor }) => {
+const NoteCard = ({ currentNote }) => {
+    const { _id, noteTitle, noteBody, noteColor } = currentNote;
+    const { componentDispatch } = useComponent();
+    const { noteDispatch } = useNote();
 
     const [editorVisibility, setEditorVisibility] = useState(false);
-
     const showCardButtons = () => {
         if (editorVisibility) {
             return "card-btn-visible"
         } 
         return "card-btn-hidden"
+    }
+
+    const editNoteHandler = () => {
+        componentDispatch({ type: "SHOW_TEXT_EDITOR" });
+        noteDispatch({ type: "EDIT_NOTE", payload: { editNoteStatus: true, editNoteId: _id}})
     }
 
     return(
@@ -26,8 +35,11 @@ const NoteCard = ({ noteTitle, noteBody, noteColor }) => {
                 <div>{parse(`${noteBody}`)}</div>
             </div>
             
-            <div className="edit-panel flex-row flex_align-middle">
-                <button className={`btn btn-icon editor-btn card-btn ${showCardButtons()}`}>
+            <div className="edit-panel flex-row flex_justify-end flex_align-middle">
+                <button 
+                    className={`btn btn-icon editor-btn card-btn ${showCardButtons()}`}
+                    onClick={() => editNoteHandler(_id)}
+                >
                     <i className="fa-solid fa-pen"></i>
                 </button>
                 <button className={`btn btn-icon editor-btn card-btn ${showCardButtons()}`}>
