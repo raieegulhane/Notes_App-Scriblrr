@@ -1,7 +1,6 @@
 .container-sidenav {
     background-color: var(--primary-grey);
     height: 90vh;
-    /* width: 20%; */
     padding: 3rem;
 }
 
