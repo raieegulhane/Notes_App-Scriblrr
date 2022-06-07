@@ -21,7 +21,10 @@ const noteReducer = (state, { type, payload }) => {
             return({ ...state, allNotes: payload });
 
         case "EDIT_NOTE": 
-            return({ ...state, isEditing: payload.editNoteStatus, isEditingId: payload.editNoteId })
+            return({ ...state, isEditing: payload.editNoteStatus, isEditingId: payload.editNoteId });
+
+        case "SET_ARCHIVE_NOTE":
+            return({ ...state, allNotes: payload.notes, archivedNotes: payload.archives });
 
         case "ADD_NEW_LABEL":
             return allLabels.findIndex(({ labelValue }) => labelValue === payload) < 0 ? 

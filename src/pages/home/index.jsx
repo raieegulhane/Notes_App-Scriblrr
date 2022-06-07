@@ -2,9 +2,11 @@ import "./home.css";
 import { useComponent } from "../../contexts/component-context";
 import { SecondaryNav, NoteInputForm } from "../../components";
 import { NotesList } from "../../components/notes/notes-list";
-import { NoteCard } from "../../components";
+import { useNote } from "../../contexts/note-context";
 
 const Home = () => {
+    const { noteState } = useNote();
+    const { allNotes } = noteState;
     const { componentState } = useComponent();
     return(
         <div className="flex-col">
@@ -16,7 +18,9 @@ const Home = () => {
             }
 
             <div>
-            <NotesList />
+            <NotesList 
+                inputNotesArray={allNotes}
+            />
             </div>
         </div>
     );

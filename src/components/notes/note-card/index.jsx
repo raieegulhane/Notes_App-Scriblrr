@@ -2,10 +2,13 @@ import "./note-card.css";
 import parse from 'html-react-parser';
 import { useState } from "react";
 import { useComponent } from "../../../contexts/component-context";
+import { useAuth } from "../../../contexts/auth-context";
 import { useNote } from "../../../contexts/note-context";
+import { postArchiveService } from "../../../services/archive-services/post-archive-service";
 
 const NoteCard = ({ currentNote }) => {
     const { _id, noteTitle, noteBody, noteColor } = currentNote;
+    const { authToken } = useAuth(); 
     const { componentDispatch } = useComponent();
     const { noteDispatch } = useNote();
 
@@ -20,6 +23,17 @@ const NoteCard = ({ currentNote }) => {
     const editNoteHandler = () => {
         componentDispatch({ type: "SHOW_TEXT_EDITOR" });
         noteDispatch({ type: "EDIT_NOTE", payload: { editNoteStatus: true, editNoteId: _id}})
+    }
+
+    const archiveNoteHandler = async () => {
+        try {
+            const { data: { archives, notes } } = await postArchiveService(currentNote, authToken);
+            noteDispatch({ type: "SET_ARCHIVE_NOTE", payload: { notes: notes, archives: archives }});            
+        } catch (error) {
+            console.log("POST_ARCHIVE_ERROR: ", error);
+        }
+
+        
     }
 
     return(
@@ -38,11 +52,14 @@ const NoteCard = ({ currentNote }) => {
             <div className="edit-panel flex-row flex_justify-end flex_align-middle">
                 <button 
                     className={`btn btn-icon editor-btn card-btn ${showCardButtons()}`}
-                    onClick={() => editNoteHandler(_id)}
+                    onClick={editNoteHandler}
                 >
                     <i className="fa-solid fa-pen"></i>
                 </button>
-                <button className={`btn btn-icon editor-btn card-btn ${showCardButtons()}`}>
+                <button 
+                    className={`btn btn-icon editor-btn card-btn ${showCardButtons()}`}
+                    onClick={archiveNoteHandler}
+                >
                     <i className="fa-solid fa-box-archive"></i>
                 </button>
                 <button className={`btn btn-icon editor-btn card-btn ${showCardButtons()}`}>
