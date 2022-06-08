@@ -1,5 +1,5 @@
 import "./notes-list.css";
-import { NoteCard } from "../note-card"; 
+import { NoteCard } from "../../../components"; 
 
 const NotesList = ({ inputNotesArray }) => {
     return(

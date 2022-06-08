@@ -44,9 +44,6 @@ const noteReducer = (state, { type, payload }) => {
         default:
             return({ ...initialNotesData });
     }    
-
-    
-
 }
 
 export { initialNotesData, noteReducer };

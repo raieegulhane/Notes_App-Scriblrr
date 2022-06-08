@@ -1,5 +1,5 @@
 import "./dropdowns.css";
-import { useComponent } from "../../contexts/component-context";
+import { useComponent } from "../../contexts";
 
 const FilterDropdown = () => {
 
@@ -115,4 +115,4 @@ const SortDropdown = () => {
 }
 
 
-export { FilterDropdown, SortDropdown }
+export { FilterDropdown, SortDropdown };

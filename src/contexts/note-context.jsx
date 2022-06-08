@@ -1,8 +1,7 @@
-import { createContext, useContext, useReducer } from "react";
-import { initialNotesData, noteReducer } from "../reducers/note-reducer";
-import { useAuth } from "../contexts/auth-context";
-import { getNoteService } from "../services/notes-services/get-note-service";
-import { useEffect } from "react";
+import { createContext, useContext, useReducer, useEffect } from "react";
+import { useAuth } from "../contexts";
+import { initialNotesData, noteReducer } from "../reducers";
+import { getNoteService } from "../services";
 
 const NoteContext = createContext();
 

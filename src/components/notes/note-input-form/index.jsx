@@ -1,14 +1,8 @@
 import "./note-input-form.css";
-import { useComponent } from "../../../contexts/component-context";
-import { RichTextEditor } from "../text-editor";
-import { ColorPalette } from "../color-palette";
-import { PriorityList } from "../priority-list";
-import { LabelEditor } from "../../label-editor";
 import { useState, useEffect } from "react";
-import { postNoteService } from "../../../services/notes-services/post-note-service";
-import { useAuth } from "../../../contexts/auth-context";
-import { useNote } from "../../../contexts/note-context";
-import { editNoteService } from "../../../services/notes-services/edit-note-service";
+import { useAuth, useNote, useComponent } from "../../../contexts";
+import { postNoteService, editNoteService } from "../../../services";
+import { RichTextEditor, ColorPalette, PriorityList, LabelEditor } from "../../../components";
 
 
 const NoteInputForm = () => {

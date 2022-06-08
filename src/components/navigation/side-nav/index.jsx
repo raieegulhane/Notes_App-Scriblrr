@@ -1,7 +1,7 @@
 import "./side-nav.css";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../contexts/auth-context";
-import { initialAuthValue } from "../../../reducers/auth-reducer";
+import { useAuth } from "../../../contexts";
+import { initialAuthValue } from "../../../reducers";
 
 const SideNav = () => {
 

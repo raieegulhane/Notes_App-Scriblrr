@@ -1,6 +1,6 @@
-import { SecondaryNav } from "../../components";
-import { useNote } from "../../contexts/note-context";
-import { NotesList } from "../../components/notes/notes-list";
+import { useNote } from "../../contexts";
+import { SecondaryNav, NotesList } from "../../components";
+
 
 const Archive = () => {
     const { noteState } = useNote();
@@ -9,7 +9,6 @@ const Archive = () => {
     return(
         <div className="flex-col">
             <SecondaryNav />
-
             <NotesList 
                 inputNotesArray={archivedNotes}
             />

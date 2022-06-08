@@ -1,6 +1,6 @@
 import "./secondary-nav.css";
-import { useComponent } from "../../contexts/component-context";
-import { SortDropdown, FilterDropdown } from "../dropdowns";
+import { useComponent } from "../../../contexts";
+import { SortDropdown, FilterDropdown } from "../../../components";
 
 const SecondaryNav = () => {
 

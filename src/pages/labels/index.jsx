@@ -1,8 +1,8 @@
 import "./labels.css";
 import { useState } from "react";
-import { useNote } from "../../contexts/note-context";
-import { useComponent } from "../../contexts/component-context";
-    
+import { useNote, useComponent } from "../../contexts";
+
+
 const Labels = () => {
     const { componentState, componentDispatch } = useComponent();
     const { showLabelDeleteConfirmation } = componentState;

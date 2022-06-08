@@ -1,20 +1,20 @@
 import "./auth.css";
-import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { PasswordInput } from "../../components/password-input";
-import { signupService } from "../../services/auth-services/signup-service"
-import { useAuth } from "../../contexts/auth-context";
-import { initialAuthValue } from "../../reducers/auth-reducer";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { signupService } from "../../services"
+import { useAuth } from "../../contexts";
+import { initialAuthValue } from "../../reducers";
+import { PasswordInput } from "../../components";
+
 
 const Signup = () => {
-
     const navigate = useNavigate();
     const location = useLocation();
     const { authDispatch, isAuth } = useAuth();
 
     useEffect(() => {
         isAuth && navigate(location?.state?.from ? location.state.from : "/home", { replace: true});
-    }, []);
+    }, [isAuth, location.state.from, navigate]);
 
     const [userData, setUserData] = useState(
         {
@@ -72,6 +72,7 @@ const Signup = () => {
         
     }
 
+    
     return (
         <main className="auth-wrapper flex-col">
             <div className="container-auth">

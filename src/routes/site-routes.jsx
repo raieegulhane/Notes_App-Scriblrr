@@ -1,7 +1,7 @@
-import { Routes, Route } from "react-router-dom";
 import Mockman from "mockman-js";
+import { Routes, Route } from "react-router-dom";
 import { Home, Archive, Labels, Trash, Login, Signup } from "../pages";
-import { PrivateRoutes } from "./private-routes";
+import { PrivateRoutes } from "../routes";
 
 const SiteRoutes = () => {
     return (

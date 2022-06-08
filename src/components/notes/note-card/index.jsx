@@ -1,14 +1,14 @@
 import "./note-card.css";
 import parse from 'html-react-parser';
 import { useState } from "react";
-import { useComponent } from "../../../contexts/component-context";
-import { useAuth } from "../../../contexts/auth-context";
-import { useNote } from "../../../contexts/note-context";
-import { postArchiveService } from "../../../services/archive-services/post-archive-service";
-import { restoreArchiveService } from "../../../services/archive-services/restore-archive-service";
-import { restoreTrashedNoteService } from "../../../services/trash-services/restore-trash-note-service";
-import { trashNoteService } from "../../../services/trash-services/trash-note-service";
-import { deleteTrashService } from "../../../services/trash-services/delete-treash-service";
+import { useAuth, useNote, useComponent } from "../../../contexts";
+import { 
+    postArchiveService,
+    restoreArchiveService,
+    trashNoteService,
+    restoreTrashedNoteService,
+    deleteTrashService
+} from "../../../services";
 
 
 const NoteCard = ({ currentNote }) => {

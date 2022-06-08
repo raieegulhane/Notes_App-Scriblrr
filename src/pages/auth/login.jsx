@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { PasswordInput } from "../../components/password-input";
-import { useAuth } from "../../contexts/auth-context";
-import { initialAuthValue } from "../../reducers/auth-reducer";
-import { loginService } from "../../services/auth-services/login-service";
+import { loginService } from "../../services";
+import { useAuth } from "../../contexts";
+import { initialAuthValue } from "../../reducers";
+import { PasswordInput } from "../../components";
 
 const Login = () => {
 
@@ -13,7 +13,7 @@ const Login = () => {
 
     useEffect(() => {
         isAuth && navigate(location?.state?.from ? location.state.from : "/home", { replace: true });
-    }, []);
+    }, [isAuth, location.state.from, navigate]);
 
     const [loginCreds, setLoginCreds] = useState({email: "", password: ""});
     const { email, password } = loginCreds;
@@ -62,10 +62,10 @@ const Login = () => {
                     } 
                 }
             );
-
         }
     }
 
+    
     return (
         <main className="auth-wrapper flex-col">
             <div className="container-auth">
