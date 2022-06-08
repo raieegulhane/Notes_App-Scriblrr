@@ -3,7 +3,7 @@ import { v4 as uuid } from "uuid";
 const initialNotesData = {
     allNotes: [],
     archivedNotes: [],
-    deletedNotes: [],
+    trashedNotes: [],
     pinnedNotes: [],
     allLabels: [],
     isEditing: false,
@@ -11,6 +11,7 @@ const initialNotesData = {
 };
 
 const noteReducer = (state, { type, payload }) => {
+    const { notes, archives, trash } = payload;
     const { allLabels } = state;
 
     switch(type) { 
@@ -23,14 +24,17 @@ const noteReducer = (state, { type, payload }) => {
         case "EDIT_NOTE": 
             return({ ...state, isEditing: payload.editNoteStatus, isEditingId: payload.editNoteId });
 
+        case "SET_ARCHIVED_NOTES":
+            return({ ...state, allNotes: notes, archivedNotes: archives });
+
+        case "SET_TRASHED_NOTES": 
+            return({ ...state, allNotes: notes, trashedNotes: trash });
+
         case "DELETE_NOTE": 
-            return({ ...state, allNotes: payload.notes, deletedNotes: payload.trash });
+            return({ ...state, allNotes: notes });
 
-        case "SET_ARCHIVE_NOTE":
-            return({ ...state, allNotes: payload.notes, archivedNotes: payload.archives });
-
-        case "DELETE_ARCHIVED_NOTE":
-            return({ ...state, archivedNotes: payload.archives, deletedNotes: payload.trash})
+        // case "DELETE_ARCHIVED_NOTE":
+        //     return({ ...state, archivedNotes: archives, trashedNotes: trash})
 
         case "ADD_NEW_LABEL":
             return allLabels.findIndex(({ labelValue }) => labelValue === payload) < 0 ? 

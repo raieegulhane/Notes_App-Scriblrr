@@ -1,15 +1,14 @@
-import { SecondaryNav } from "../../components";
 import { useNote } from "../../contexts/note-context";
 import { NotesList } from "../../components/notes/notes-list";
 
 const Trash = () => {
     const { noteState } = useNote();
-    const { deletedNotes } = noteState;
+    const { trashedNotes } = noteState;
 
     return(
         <div className="flex-col">
             <NotesList 
-                inputNotesArray={deletedNotes}
+                inputNotesArray={trashedNotes}
             />
         </div>
     );

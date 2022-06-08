@@ -28,7 +28,7 @@ const NoteInputForm = () => {
         noteLabels: [],
         isPinned: false,
         isArchived: false,
-        isDeleted: false,
+        isTrashed: false,
     }
 
     const [noteValues, setNoteValues] = useState(initialNoteValues);

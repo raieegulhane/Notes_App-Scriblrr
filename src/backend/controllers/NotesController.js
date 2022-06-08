@@ -66,7 +66,6 @@ export const createNoteHandler = function (schema, request) {
 /**
  * This handler handles creating a new note
  * send DELETE Request at /api/notes/:noteId
- * edited: the deleted note will be pushed to trash
  * */
 
 export const deleteNoteHandler = function (schema, request) {
@@ -81,16 +80,10 @@ export const deleteNoteHandler = function (schema, request) {
         }
       );
     }
-    const { noteId } = request.params;
-    const deletedNote = user.notes.find((note) => note._id === noteId);
+    const noteId = request.params.noteId;
     user.notes = user.notes.filter((item) => item._id !== noteId);
-    user.trash.push({ ...deletedNote });
     this.db.users.update({ _id: user._id }, user);
-    return new Response(
-      201, 
-      {}, 
-      { notes: user.notes, trash: user.trash }
-    );
+    return new Response(200, {}, { notes: user.notes });
   } catch (error) {
     return new Response(
       500,
@@ -158,7 +151,7 @@ export const archiveNoteHandler = function (schema, request) {
     const { noteId } = request.params;
     const archivedNote = user.notes.filter((note) => note._id === noteId)[0];
     user.notes = user.notes.filter((note) => note._id !== noteId);
-    user.archives.push({ ...archivedNote });
+    user.archives.push({ ...archivedNote, isArchived: true });
     this.db.users.update({ _id: user._id }, user);
     return new Response(
       201,
@@ -197,7 +190,7 @@ export const trashNoteHandler = function (schema, request) {
     const { noteId } = request.params;
     const trashedNote = user.notes.filter((note) => note._id === noteId)[0];
     user.notes = user.notes.filter((note) => note._id !== noteId);
-    user.trash.push({ ...trashedNote });
+    user.trash.push({ ...trashedNote, isTrashed: true });
     this.db.users.update({ _id: user._id }, user);
     return new Response(201, {}, { trash: user.trash, notes: user.notes });
   } catch (error) {
