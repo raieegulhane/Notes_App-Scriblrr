@@ -5,16 +5,16 @@ import { useComponent } from "../../../contexts/component-context";
 import { useAuth } from "../../../contexts/auth-context";
 import { useNote } from "../../../contexts/note-context";
 import { postArchiveService } from "../../../services/archive-services/post-archive-service";
-import { deleteNoteService } from "../../../services/notes-services/delete-note-service";
 import { restoreArchiveService } from "../../../services/archive-services/restore-archive-service";
 import { restoreTrashedNoteService } from "../../../services/trash-services/restore-trash-note-service";
 import { trashNoteService } from "../../../services/trash-services/trash-note-service";
+import { deleteTrashService } from "../../../services/trash-services/delete-treash-service";
 
 
 const NoteCard = ({ currentNote }) => {
     const { _id, noteTitle, noteBody, noteColor, isArchived, isTrashed } = currentNote;
     const { authToken } = useAuth(); 
-    const { noteState, noteDispatch } = useNote();
+    const { noteDispatch } = useNote();
     const { componentDispatch } = useComponent();
 
     const [editorVisibility, setEditorVisibility] = useState(false);
@@ -30,23 +30,11 @@ const NoteCard = ({ currentNote }) => {
         noteDispatch({ type: "EDIT_NOTE", payload: { editNoteStatus: true, editNoteId: _id }})
     }
 
-    const deleteNoteHandler = async () => {
-        try {
-            const { data: { notes } } = await deleteNoteService(currentNote, authToken);
-            noteDispatch({ type: "DELETE_NOTE", payload: { notes } });
-        } catch (error) {
-            console.log("DELETE_NOTE_ERROR: ", error);
-        }
-    }
-
     const archiveStateHandler = async () => {
         try {
             const { data: { notes, archives } } = isArchived ? 
                 await restoreArchiveService(currentNote, authToken) :
                 await postArchiveService(currentNote, authToken);
-
-                console.log(notes, archives);
-
             noteDispatch({ type: "SET_ARCHIVED_NOTES", payload: { notes, archives } });            
         } catch (error) {
             console.log("POST_ARCHIVE_ERROR: ", error);
@@ -55,15 +43,21 @@ const NoteCard = ({ currentNote }) => {
 
     const trashStateHandler = async () => {
         try {
-            const { data: { notes, trash } } = isTrashed ?
+            const { data: { notes, archives, trash } } = isTrashed ?
                 await restoreTrashedNoteService(currentNote, authToken) :
                 await trashNoteService(currentNote, authToken); 
-
-                console.log(notes, trash)
-
-            noteDispatch({ type: "SET_TRASHED_NOTES", payload: { notes, trash } });            
+            noteDispatch({ type: "SET_TRASHED_NOTES", payload: { notes, archives, trash } });            
         } catch (error) {
             console.log("POST_TRASH_ERROR: ", error);
+        }
+    }
+
+    const premenantDeleteHandler = async () => {
+        try {
+            const { data: { trash } } = await deleteTrashService(currentNote, authToken);
+            noteDispatch({ type: "PERMANANT_DELETE_NOTE", payload: { trash } });
+        } catch (error) {
+            console.log("DELETE_NOTE_ERROR: ", error);
         }
     }
 
@@ -123,7 +117,7 @@ const NoteCard = ({ currentNote }) => {
                     </div>
                 }
                 {
-                    isTrashed && !isArchived &&
+                    isTrashed &&
                     <div className="flex-row">
                         <button 
                             className={`btn btn-icon editor-btn card-btn ${showCardButtons()}`}
@@ -133,7 +127,7 @@ const NoteCard = ({ currentNote }) => {
                         </button>
                         <button 
                             className={`btn btn-icon editor-btn card-btn ${showCardButtons()}`}
-                            onClick={deleteNoteHandler}
+                            onClick={premenantDeleteHandler}
                         >
                             <i className="fa-solid fa-trash-can"></i>
                         </button>

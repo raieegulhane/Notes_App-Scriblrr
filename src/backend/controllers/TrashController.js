@@ -66,7 +66,11 @@ export const restoreFromTrashHandler = function (schema, request) {
   const { noteId } = request.params;
   const restoredNote = user.trash.filter((note) => note._id === noteId)[0];
   user.trash = user.trash.filter((note) => note._id !== noteId);
-  user.notes.push({ ...restoredNote, isTrashed: false });
+  if (restoredNote.isArchived) {
+    user.archives.push({ ...restoredNote, isTrashed: false })
+  } else {
+    user.notes.push({ ...restoredNote, isTrashed: false });
+  }
   this.db.users.update({ _id: user._id }, user);
-  return new Response(200, {}, { trash: user.trash, notes: user.notes });
+  return new Response(200, {}, { notes: user.notes, archives: user.archives,  trash: user.trash });
 };
