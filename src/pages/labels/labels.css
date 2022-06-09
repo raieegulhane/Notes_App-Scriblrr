@@ -1,0 +1,73 @@
+.input.add-label-input {
+    background-color: var(--grey2);
+    color: var(--text-color);
+    min-width: 50%;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0 0 0 / 20%);
+}
+
+.input.add-label-input::placeholder {
+    color: var(--app-content-grey)
+}
+
+.labels-display-container {
+    flex-wrap: wrap;
+    max-width: 80%;
+    max-height: 120px;
+    margin: auto;
+    overflow-y: auto;
+}
+
+.btn.btn-primary.chip-label {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding-right: 1rem;
+    padding-left: 1rem;
+    border: none;
+    margin: 0.25rem;
+    gap: 1.5rem;
+    cursor: default;    
+}
+
+.btn-icon.label-delete-btn {
+    background-color: var(--secondary-color);
+    color: white;
+    font-size: 1rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: none;
+    cursor: pointer;
+}
+
+.label-delete-btn:hover {
+    font-size: 1.1rem;
+}
+
+.del-confirmation-wrapper {
+    background-color: rgba(0 0 0 / 70%);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    overflow-y: auto;
+}
+
+.del-confirmation-container {
+    background-color: var(--white);
+    max-width: 25%;
+    padding: 2rem;
+    border-radius: var(--br-sq);
+    margin: 1rem;
+    gap:1.5rem;
+    box-shadow: 0px 1px 7px rgba(0 0 0 / 15%);
+}
+
+.btn.del-confirmation-btn {
+    font-size: 0.75rem;
+    margin: 0 0.5rem;
+}
+
+

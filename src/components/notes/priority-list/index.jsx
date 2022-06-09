@@ -1,30 +1,41 @@
+import { v4 as uuid } from "uuid";
 import "./priority-list.css";
 
-const PriorityList = () => {
+const priorityListValues = [
+    {
+        id: uuid(),
+        priorityValue: "High"
+    }, 
+    {
+        id: uuid(),
+        priorityValue: "Medium"
+    },
+    {
+        id: uuid(),
+        priorityValue: "Low"
+    }
+];
+
+const PriorityList = ({ onClick }) => {
     return(
         <div className="priority-list-wrapper">
             <ul className="list-noBullets list-inline">
-                <li>
-                    <button 
-                        className="priority-option"
-                    >
-                        High
-                    </button>
-                </li>
-                <li>
-                    <button 
-                        className="priority-option"
-                    >
-                        Medium
-                    </button>
-                </li>
-                <li>
-                    <button 
-                        className="priority-option"
-                    >
-                        Low
-                    </button>
-                </li>
+                {
+                    priorityListValues.map(({ id, priorityValue }) => {
+                        return(
+                            <li key={id}>
+                                <button 
+                                    className="priority-option"
+                                    name="notePriority"
+                                    value={priorityValue}
+                                    onClick={onClick}    
+                                >
+                                    {priorityValue}
+                                </button>
+                            </li>
+                        );
+                    })
+                }
             </ul>
         </div>
     );

@@ -20,7 +20,7 @@
 }
 
 .input.search-input {
-    color: var(--text-grey);
+    color: var(--text-color);
     min-width: 400px;
 }
 

@@ -2,51 +2,51 @@ import { v4 as uuid } from "uuid";
 
 const colorsArray = [
     {
-        id: uuid,
+        id: uuid(),
         color: "#ffffff"
     },
     {
-        id: uuid,
+        id: uuid(),
         color: "#f28b82"
     },
     {
-        id: uuid,
+        id: uuid(),
         color: "#fbbc04"
     },
     {
-        id: uuid,
+        id: uuid(),
         color: "#fff475"
     },
     {
-        id: uuid,
+        id: uuid(),
         color: "#ccff90"
     },
     {
-        id: uuid,
+        id: uuid(),
         color: "#a7ffeb"
     },
     {
-        id: uuid,
+        id: uuid(),
         color: "#cbf0f8"
     },
     {
-        id: uuid,
+        id: uuid(),
         color: "#aecbfa"
     },
     {
-        id: uuid,
+        id: uuid(),
         color: "#d7aefb" 
     },
     {
-        id: uuid,
+        id: uuid(),
         color: "#fdcfe8"
     },
     {
-        id: uuid,
+        id: uuid(),
         color: "#e6c9a8"
     },
     {
-        id: uuid,
+        id: uuid(),
         color: "#e8eaed"
     },
 ];

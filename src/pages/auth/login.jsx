@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { PasswordInput } from "../../components/password-input";
 import { useAuth } from "../../contexts/auth-context";
 import { initialAuthValue } from "../../reducers/auth-reducer";
-import { loginService } from "../../services/login-service";
+import { loginService } from "../../services/auth-services/login-service";
 
 const Login = () => {
 
@@ -82,7 +82,7 @@ const Login = () => {
                             placeholder="janedoe@example.com"
                             value={email}
                             required
-                            onChange={(event) => updateLoginCreds(event)}
+                            onChange={updateLoginCreds}
                         />
                     </label>
                     <label className="auth-label" htmlFor="password">
@@ -92,7 +92,7 @@ const Login = () => {
                             name={"password"}
                             placeholder={"*******"}
                             value={password}
-                            onChange={(event) => updateLoginCreds(event)}
+                            onChange={updateLoginCreds}
                         />
                     </label>
 

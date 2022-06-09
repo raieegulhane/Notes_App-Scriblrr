@@ -10,10 +10,10 @@
     /* colors */
     --white: #ffffff;
     --black: #202124;
-    --primary-color: #a0acff;
-    --primary-color-highlight: #7184ff;
-    --secondary-color: #c0c9ff;
-    --accent-color: #e7eaff;
+    --primary-color: #919fff;
+    --primary-color-highlight: #798bff;
+    --secondary-color: #b3beff;
+    --accent-color: #cdd2ff;
     --primary-grey: #f7f7f7;
     --secondary-grey:#cbcbcb;
     --app-content-grey:#777c81;
@@ -21,4 +21,5 @@
     --grey: #dedede;
     --grey2: #efefef;
     --grey3: #4b4d4f;
+    --grey4: #3f3f3f;
 }

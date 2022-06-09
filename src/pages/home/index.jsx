@@ -1,9 +1,9 @@
 import "./home.css";
 import { useComponent } from "../../contexts/component-context";
-import { SecondaryNav, ColorPalette, NoteInputForm, NoteCard } from "../../components";
+import { SecondaryNav, NoteInputForm } from "../../components";
 
 const Home = () => {
-    const { state: componentState } = useComponent();
+    const { componentState } = useComponent();
     return(
         <div>
             <SecondaryNav />

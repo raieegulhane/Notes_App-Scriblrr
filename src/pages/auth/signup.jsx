@@ -2,7 +2,7 @@ import "./auth.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { PasswordInput } from "../../components/password-input";
-import { signupService } from "../../services/signup-service"
+import { signupService } from "../../services/auth-services/signup-service"
 import { useAuth } from "../../contexts/auth-context";
 import { initialAuthValue } from "../../reducers/auth-reducer";
 
@@ -18,7 +18,8 @@ const Signup = () => {
 
     const [userData, setUserData] = useState(
         {
-            name: "",
+            firstName: "",
+            lastName: "",
             email: "",
             password: "",
             confirmPassword: ""
@@ -87,7 +88,7 @@ const Signup = () => {
                             placeholder="Jane Doe"
                             value={firstName}
                             required
-                            onChange={(event) => updateUserData(event)}
+                            onChange={updateUserData}
                         />
                     </label>
                     <label className="auth-label" htmlFor="last-name">
@@ -100,7 +101,7 @@ const Signup = () => {
                             placeholder="Jane Doe"
                             value={lastName}
                             required
-                            onChange={(event) => updateUserData(event)}
+                            onChange={updateUserData}
                         />
                     </label>
                     <label className="auth-label" htmlFor="user-email">
@@ -113,7 +114,7 @@ const Signup = () => {
                             placeholder="janedoe@example.com"
                             value={email}
                             required
-                            onChange={(event) => updateUserData(event)}
+                            onChange={updateUserData}
                         />
                     </label>
                     <label className="auth-label" htmlFor="new-password">
@@ -123,7 +124,7 @@ const Signup = () => {
                             name={"password"}
                             placeholder={"Atleast 6 charachters"}
                             value={password}
-                            onChange={(event) => updateUserData(event)}
+                            onChange={updateUserData}
                         />
                     </label>
                     <label className="auth-label" htmlFor="confirm-password">
@@ -133,7 +134,7 @@ const Signup = () => {
                             name={"confirmPassword"}
                             placeholder={"Re-enter password"}
                             value={confirmPassword}
-                            onChange={(event) => updateUserData(event)}
+                            onChange={updateUserData}
                         />
                     </label>
 

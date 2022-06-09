@@ -2,21 +2,24 @@ import "./color-palette.css";
 import { colorsArray } from "./colors";
 import { useComponent } from "../../../contexts/component-context";
 
-const ColorPalette = () => {
+const ColorPalette = ({ onClick}) => {
 
-    const { dispatch: componentDispatch } = useComponent();
+    const { componentDispatch } = useComponent();
 
     return(
         <div className="palette-wrapper flex-row flex_justify-sb flex_align-middle">
             <div className="colors-container flex-row">
                 {colorsArray.map(({ id, color }) => {
                     return(
-                        <div 
-                            key={ id }
+                        <button
+                            key={id}
                             className="color-item"
                             style={{ backgroundColor: color }}
+                            name="noteColor"
+                            value={color}
+                            onClick={onClick}
                         >
-                        </div>
+                        </button>
                     );
                 })}
             </div>
