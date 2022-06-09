@@ -1,11 +1,11 @@
 /* fonts */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,400;1,700&family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Open+Sans:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap');
 
 :root {
 
     /* fonts */
-    --logo-font: 'Pacifico', cursive;
-    --text-font: 'Open Sans', sans-serif;
+    --logo-font: 'Amatic SC', 'cursive';
+    --text-font: 'Open Sans', 'sans-serif';
 
     /* colors */
     --white: #ffffff;
