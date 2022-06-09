@@ -43,9 +43,23 @@ const NoteInputForm = () => {
         setNoteValues((prevNoteValues) => ({ ...prevNoteValues, noteBody: value}));
     }
 
-    const updateNoteLabels = (labelId, labelValue) => {
-        setNoteValues((prevNoteValues) => ({ ...prevNoteValues, noteLabels: [...noteLabels, { id: labelId, value: labelValue }]}))
+    const addNoteLabels = (labelId, labelValue) => {
+        setNoteValues((prevNoteValues) => ({ 
+            ...prevNoteValues, 
+            noteLabels: noteLabels.findIndex((label) => label.id === labelId) < 0 ?
+                [ ...noteLabels, { id: labelId, value: labelValue } ]:
+                [ ...noteLabels ]
+        }))
     }
+
+    const removeNoteLabels = (labelId) => {
+        setNoteValues((prevNoteValues) => ({
+            ...prevNoteValues,
+            noteLabels: noteLabels.filter((label) => label.id !== labelId)
+        }))
+    }
+
+    console.log(noteLabels)
 
     const updatePinnedStatus = () => {
         setNoteValues({ ...noteValues, isPinned: !noteValues.isPinned});
@@ -101,6 +115,27 @@ const NoteInputForm = () => {
                             value={noteBody}
                             onChange={updateNoteBody}
                         />
+                    </div>
+
+                    <div className="editor-labels-display flex-row">
+                        {
+                            noteLabels.map(({ id, value }) => {
+                                return(
+                                    <div 
+                                        key = {id}
+                                        className=" flex-row flex_align-middle editor-label-chip btn-primary btn-cr"
+                                    >
+                                        <span>{value}</span>
+                                        <button 
+                                            className="chip-close-btn"
+                                            onClick={() => removeNoteLabels(id)}
+                                        >
+                                            <i className="fa-solid fa-xmark"></i>
+                                        </button>                                    
+                                    </div>
+                                );
+                            })
+                        }
                     </div>
                 </div>
 
@@ -160,7 +195,7 @@ const NoteInputForm = () => {
                         {
                             showLabelEditor &&
                             <LabelEditor
-                                onClick={updateNoteLabels}
+                                onClick={addNoteLabels}
                             />
                         }
                     </div>

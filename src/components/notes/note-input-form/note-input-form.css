@@ -46,6 +46,44 @@
     outline: none;
 }
 
+.editor-labels-display {
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0 1rem;
+    gap: 0.5rem
+}
+
+.btn-primary.editor-label-chip {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    font-size: 0.75rem;
+    line-height: 0.75rem;
+    padding: 0.5rem 0.7rem;
+    border: none;
+    gap: 0.5rem;
+    cursor: default;
+}
+
+.btn-primary.editor-label-chip:hover {
+    background-color: var(--accent-color);
+}
+
+.chip-close-btn {
+    background-color: transparent;
+    color: var(--app-content-grey);
+    height: 1rem;
+    border: none;
+    cursor: pointer; 
+}
+
+.chip-close-btn:hover {
+    color: var(--grey3);
+}
+
+.note-input-btn-panel {
+    margin-top: 1rem;
+}
+
 .btn-icon.editor-btn {
     font-size: 1.25rem;
 }
@@ -71,11 +109,12 @@
 .btn.btn-primary.btn-add-note {
     font-size: 0.75rem;
     margin: 0 1rem;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
 }
 
 .priority-list-toggle {
     border-radius: var(--br-cr);
-    box-shadow: 0px 1px 7px rgba(0 0 0 / 15%);
+    box-shadow: 0px 1px 6px rgba(0 0 0 / 15%);
 }
 
 .pin-icon-selected {
