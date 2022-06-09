@@ -12,17 +12,22 @@ import {
 
 
 const NoteCard = ({ currentNote }) => {
-    const { _id, noteTitle, noteBody, noteColor, isArchived, isTrashed } = currentNote;
+    const { _id, noteTitle, noteBody, noteColor, isPinned, isArchived, isTrashed } = currentNote;
     const { authToken } = useAuth(); 
     const { noteDispatch } = useNote();
     const { componentDispatch } = useComponent();
 
     const [editorVisibility, setEditorVisibility] = useState(false);
+
     const showCardButtons = () => {
         if (editorVisibility) {
             return "card-btn-visible"
         } 
         return "card-btn-hidden"
+    }
+
+    const pinNoteHandler = () => {
+        noteDispatch({ type: "SET_PINNED_NOTES", payload: { _id }});
     }
 
     const editNoteHandler = () => {
@@ -74,11 +79,26 @@ const NoteCard = ({ currentNote }) => {
             
             <div className="edit-panel flex-row flex_justify-end flex_align-middle">
                 {
+                    isPinned &&
+                    <button 
+                        className={`btn btn-icon editor-btn pin-btn pinned`}
+                        onClick={pinNoteHandler}
+                    >
+                        <i className="fa-solid fa-thumbtack"></i>
+                    </button>
+                }
+                {
                     !isArchived && !isTrashed &&
                     <div className="flex-row">
-                        <button className={`btn btn-icon editor-btn pin-btn ${showCardButtons()}`}>
-                            <i className="fa-solid fa-thumbtack"></i>
-                        </button>
+                        {
+                            !isPinned &&
+                            <button 
+                                className={`btn btn-icon editor-btn pin-btn ${showCardButtons()}`}
+                                onClick={pinNoteHandler}
+                            >
+                                <i className="fa-solid fa-thumbtack"></i>
+                            </button>
+                        }
                         <button 
                             className={`btn btn-icon editor-btn card-btn ${showCardButtons()}`}
                             onClick={editNoteHandler}
