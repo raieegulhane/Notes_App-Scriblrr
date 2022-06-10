@@ -1,10 +1,10 @@
 import { createContext, useContext, useReducer } from "react";
-import { initialComponentValues, componentReducer } from "../reducers";
+import { initialComponentValues, componentReducerFunction } from "../reducers";
 
 const ComponentContext = createContext(initialComponentValues);
 
 const ComponentProvider = ({ children }) => {
-    const [componentState, componentDispatch] = useReducer(componentReducer, initialComponentValues);
+    const [componentState, componentDispatch] = useReducer(componentReducerFunction, initialComponentValues);
 
     return(
         <ComponentContext.Provider

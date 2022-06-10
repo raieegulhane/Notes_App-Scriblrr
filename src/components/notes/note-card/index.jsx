@@ -12,10 +12,23 @@ import {
 
 
 const NoteCard = ({ currentNote }) => {
-    const { _id, noteTitle, noteBody, noteColor, noteLabels, isPinned, isArchived, isTrashed } = currentNote;
+    const { _id, 
+            noteTitle, 
+            noteBody, 
+            noteColor, 
+            noteLabels, 
+            isPinned, 
+            isArchived, 
+            isTrashed, 
+            displayDate, 
+            displayTime 
+        } = currentNote;
+
     const { authToken } = useAuth(); 
     const { noteDispatch } = useNote();
     const { componentDispatch } = useComponent();
+
+    const [pinnedState, setPinnedState] = useState(isPinned ? true : false);
 
     const [editorVisibility, setEditorVisibility] = useState(false);
 
@@ -70,11 +83,20 @@ const NoteCard = ({ currentNote }) => {
     return(
         <div 
             style={{ backgroundColor: noteColor }}
-            className="note-card-wrapper flex-col flex_justify-sb">
+            className="note-card-wrapper flex-col flex_justify-sb"
+            onMouseOver={() => setEditorVisibility(true)}
+            onMouseOut={() => setEditorVisibility(false)}
+        >
+            <div>
+                <div className="note-timestamp-container flex-col">
+                    <p>{displayDate}</p>
+                    <p>{displayTime}</p>
+                </div>    
 
-            <div className="note-content-display">
-                <h3 className="note-card-title">{noteTitle}</h3>
-                <div>{parse(`${noteBody}`)}</div>
+                <div className="note-content-display">
+                    <h3 className="note-card-title">{noteTitle}</h3>
+                    <div>{parse(`${noteBody}`)}</div>
+                </div>
             </div>
 
             <div className="flex-col">
@@ -93,7 +115,9 @@ const NoteCard = ({ currentNote }) => {
                     }
                 </div>
                 
-                <div className="edit-panel flex-row flex_justify-end flex_align-middle">
+                <div 
+                    className="edit-panel flex-row flex_justify-end flex_align-middle"
+                >
                     {
                         isPinned &&
                         <button 
@@ -170,10 +194,7 @@ const NoteCard = ({ currentNote }) => {
                         </div>
                     }
 
-                    <button 
-                        className="btn btn-icon editor-btn card-btn "
-                        onClick={() => setEditorVisibility(!editorVisibility)}
-                    >
+                    <button className="btn btn-icon editor-btn card-btn">
                         <i className="fa-solid fa-ellipsis-vertical"></i>
                     </button>
                 </div>
