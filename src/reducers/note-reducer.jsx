@@ -23,18 +23,6 @@ const noteReducerFunction = (state, { type, payload }) => {
         case "EDIT_NOTE": 
             return({ ...state, isEditing: editNoteStatus, isEditingId: editNoteId });
 
-        case "SET_PINNED_NOTES":
-            return({
-                ...state,
-                allNotes: [...allNotes].map((note) => {
-                    return(
-                         note._id === _id ?
-                         { ...note, isPinned: !note.isPinned } :
-                         { ...note }
-                    );
-                })
-            });
-
         case "SET_ARCHIVED_NOTES":
             return({ ...state, allNotes: notes, archivedNotes: archives });
 

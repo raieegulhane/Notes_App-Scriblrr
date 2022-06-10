@@ -59,8 +59,6 @@ const NoteInputForm = () => {
         }))
     }
 
-    console.log(noteLabels)
-
     const updatePinnedStatus = () => {
         setNoteValues({ ...noteValues, isPinned: !noteValues.isPinned});
     }

@@ -39,10 +39,6 @@ const NoteCard = ({ currentNote }) => {
         return "card-btn-hidden"
     }
 
-    const pinNoteHandler = () => {
-        noteDispatch({ type: "SET_PINNED_NOTES", payload: { _id }});
-    }
-
     const editNoteHandler = () => {
         componentDispatch({ type: "SHOW_TEXT_EDITOR" });
         noteDispatch({ type: "EDIT_NOTE", payload: { editNoteStatus: true, editNoteId: _id }})
@@ -120,25 +116,13 @@ const NoteCard = ({ currentNote }) => {
                 >
                     {
                         isPinned &&
-                        <button 
-                            className={`btn btn-icon editor-btn pin-btn pinned`}
-                            onClick={pinNoteHandler}
-                        >
+                        <button className={`btn btn-icon editor-btn pin-btn pinned`}>
                             <i className="fa-solid fa-thumbtack"></i>
                         </button>
                     }
                     {
                         !isArchived && !isTrashed &&
                         <div className="flex-row">
-                            {
-                                !isPinned &&
-                                <button 
-                                    className={`btn btn-icon editor-btn pin-btn ${showCardButtons()}`}
-                                    onClick={pinNoteHandler}
-                                >
-                                    <i className="fa-solid fa-thumbtack"></i>
-                                </button>
-                            }
                             <button 
                                 className={`btn btn-icon editor-btn card-btn ${showCardButtons()}`}
                                 onClick={editNoteHandler}
