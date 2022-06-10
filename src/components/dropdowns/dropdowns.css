@@ -3,6 +3,7 @@
     top: 90%;
     right: 1rem;
     background-color: white;
+    max-width: 175px;
     padding: 1rem;
     border-radius: var(--br-sq);
     box-shadow: 0 2px 5px rgba(0 0 0 / 20%);
@@ -17,4 +18,42 @@
     flex-direction: row;
     align-items: center;
     gap: 3px
+}
+
+.filter-colors-options {
+    flex-wrap: wrap;
+    margin-top: 0.3rem;
+    gap: 0.25rem
+}
+
+.color-option {
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid var(--app-content-grey);
+    border-radius: var(--br-rd);
+    cursor: pointer;
+}
+
+.color-option:hover {
+    border-color: var(--secondary-grey);
+}
+
+.clear-btn-container {
+    margin-top: 1.5rem;
+    margin-left: auto;
+    gap: 0.5rem
+}
+
+.clear-btn {
+    background-color: transparent;
+    color: var(--secondary-color);
+    font-weight: bold;
+    text-align: end;
+    text-decoration: underline;
+    border: none;
+    cursor: pointer;
+}
+
+.clear-btn:hover {
+    color: var(--primary-color);
 }

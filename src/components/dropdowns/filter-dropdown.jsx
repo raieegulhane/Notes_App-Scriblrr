@@ -1,0 +1,105 @@
+import "./dropdowns.css";
+import { useFilter, useComponent } from "../../contexts";
+import { colorsArray } from "../notes/color-palette/colors";
+
+
+const FilterDropdown = () => {
+
+    const { filterDispatch } = useFilter();
+    const { componentDispatch } = useComponent();
+
+    return(
+        <div className="dropdown-container flex-col flex_justify-start">
+            <button 
+                className="btn btn-icon btn-close"
+                onClick={() => componentDispatch({type: "SHOW_FILTER_DROPDOWN"})}
+            >
+                <i className="fa-solid fa-xmark"></i>
+            </button>
+
+            {/* filter by priority */}
+            <div className="dropdown-section flex-col flex_justify-start">
+                <h4>Priority:</h4>
+                <label 
+                    className="dropdown-label"
+                    htmlFor="priority_high"
+                >
+                    <input
+                        id="priority_high"
+                        className="dropdown-input" 
+                        type="checkbox"
+                        name="filter-by-priority"  
+                        value="High"
+                        onClick={() => filterDispatch({ type: "FILTER_BY_PRIORITY", payload: "HIGH"})}
+                    />
+                    High
+                </label>
+                <label 
+                    className="dropdown-label"
+                    htmlFor="priority_medium"
+                >
+                    <input
+                        id="priority_medium"
+                        className="dropdown-input" 
+                        type="checkbox"
+                        name="filter-by-priority"  
+                        value="Medium"
+                        onClick={() => filterDispatch({ type: "FILTER_BY_PRIORITY", payload: "MEDIUM"})}
+                    />
+                    Medium
+                </label>
+                <label 
+                    className="dropdown-label"
+                    htmlFor="priority_low"
+                >
+                    <input
+                        id="priority_low"
+                        className="dropdown-input" 
+                        type="checkbox"
+                        name="filter-by-priority"  
+                        value="Low"
+                        onClick={() => filterDispatch({ type: "FILTER_BY_PRIORITY", payload: "LOW"})}
+                    />
+                    Low
+                </label>
+            </div>
+
+            {/* filter by colors */}
+            <div className="dropdown-section flex-col flex_justify-start">
+                <h4>Colors:</h4>
+                <div className="filter-colors-options flex-row">
+                {
+                    colorsArray.map(({ id, color }) => {
+                        return(
+                            <button 
+                                key={id}
+                                className="color-option"
+                                value={color}
+                                style={{ backgroundColor: color }}
+                                onClick={() => filterDispatch({ type: "FILTER_BY_COLOR", payload: color})}
+                            ></button>
+                        );
+                    })
+                }
+                </div>
+            </div>
+
+            <div className="clear-btn-container flex-col ">
+                <button 
+                    className="clear-btn"
+                    onClick={() => filterDispatch({ type: "CLEAR_FILTERS" })}    
+                >
+                    Clear Filters
+                </button>
+                <button 
+                    className="clear-btn"
+                    onClick={() => filterDispatch({ type: "CLEAR_ALL" })}    
+                >
+                    Clear All
+                </button>
+            </div>
+        </div>
+    );
+}
+
+export { FilterDropdown };
