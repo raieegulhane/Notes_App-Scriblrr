@@ -5,7 +5,9 @@ import { colorsArray } from "../notes/color-palette/colors";
 
 const FilterDropdown = () => {
 
-    const { filterDispatch } = useFilter();
+    const { filterState, filterDispatch } = useFilter();
+    const { filterByPriority: {HIGH, MEDIUM, LOW}, filterByColor } = filterState;
+
     const { componentDispatch } = useComponent();
 
     return(
@@ -29,8 +31,9 @@ const FilterDropdown = () => {
                         className="dropdown-input" 
                         type="checkbox"
                         name="filter-by-priority"  
-                        value="High"
-                        onClick={() => filterDispatch({ type: "FILTER_BY_PRIORITY", payload: "HIGH"})}
+                        value="1"
+                        checked={HIGH}
+                        onChange={() => filterDispatch({ type: "PRIORITY_HIGH" })}
                     />
                     High
                 </label>
@@ -43,8 +46,9 @@ const FilterDropdown = () => {
                         className="dropdown-input" 
                         type="checkbox"
                         name="filter-by-priority"  
-                        value="Medium"
-                        onClick={() => filterDispatch({ type: "FILTER_BY_PRIORITY", payload: "MEDIUM"})}
+                        value="2"
+                        checked={MEDIUM}
+                        onChange={() => filterDispatch({ type: "PRIORITY_MEDIUM" })}
                     />
                     Medium
                 </label>
@@ -57,8 +61,9 @@ const FilterDropdown = () => {
                         className="dropdown-input" 
                         type="checkbox"
                         name="filter-by-priority"  
-                        value="Low"
-                        onClick={() => filterDispatch({ type: "FILTER_BY_PRIORITY", payload: "LOW"})}
+                        value="3"
+                        checked={LOW}
+                        onChange={() => filterDispatch({ type: "PRIORITY_LOW" })}
                     />
                     Low
                 </label>
@@ -85,6 +90,12 @@ const FilterDropdown = () => {
             </div>
 
             <div className="clear-btn-container flex-col ">
+                <button 
+                    className="clear-btn"
+                    onClick={() => filterDispatch({ type: "CLEAR_COLOR_FILTER" })}    
+                >
+                    Show All Colors
+                </button>
                 <button 
                     className="clear-btn"
                     onClick={() => filterDispatch({ type: "CLEAR_FILTERS" })}    

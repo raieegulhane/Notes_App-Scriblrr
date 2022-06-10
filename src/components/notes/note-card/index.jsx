@@ -28,8 +28,6 @@ const NoteCard = ({ currentNote }) => {
     const { noteDispatch } = useNote();
     const { componentDispatch } = useComponent();
 
-    const [pinnedState, setPinnedState] = useState(isPinned ? true : false);
-
     const [editorVisibility, setEditorVisibility] = useState(false);
 
     const showCardButtons = () => {

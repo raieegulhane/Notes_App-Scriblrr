@@ -60,7 +60,7 @@ const SortDropdown = () => {
                         type="radio"
                         name="sort-by-date"
                         value="newest-first"  
-                        onclick={() => filterDispatch({ type: "SORT_BY_DATE", payload: "NEWEST_FIRST"})}
+                        onClick={() => filterDispatch({ type: "SORT_BY_DATE", payload: "NEWEST_FIRST"})}
                     />
                     Newest first
                 </label>
@@ -74,7 +74,7 @@ const SortDropdown = () => {
                         type="radio"
                         name="sort-by-date"  
                         value="oldest-first"
-                        onclick={() => filterDispatch({ type: "SORT_BY_DATE", payload: "OLDEST_FIRST"})}
+                        onClick={() => filterDispatch({ type: "SORT_BY_DATE", payload: "OLDEST_FIRST"})}
                     />
                     Oldest first
                 </label>

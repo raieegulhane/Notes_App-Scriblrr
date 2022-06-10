@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useAuth, useNote, useComponent } from "../../../contexts";
 import { postNoteService, editNoteService } from "../../../services";
 import { RichTextEditor, ColorPalette, PriorityList, LabelEditor } from "../../../components";
+import { getCreatedTimeStamp } from "../../../utility-functons";
 
 
 const NoteInputForm = () => {
@@ -14,15 +15,20 @@ const NoteInputForm = () => {
     const { componentState, componentDispatch } = useComponent();
     const { showColorPalette, showPriorityOptions, showLabelEditor } = componentState;
 
+    const { currDateString, currTimeString } = getCreatedTimeStamp();
+
     const initialNoteValues = {
         noteTitle: "",
         noteBody: "",
         noteColor: "#ffffff",
-        notePriority: "Low",
+        notePriority: "3",
         noteLabels: [],
         isPinned: false,
         isArchived: false,
         isTrashed: false,
+        noteTimestamp: new Date().toLocaleString(),
+        displayDate: currDateString,
+        displayTime: currTimeString
     }
 
     const [noteValues, setNoteValues] = useState(initialNoteValues);

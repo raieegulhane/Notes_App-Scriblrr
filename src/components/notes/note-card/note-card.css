@@ -15,10 +15,9 @@
 }
 
 .note-timestamp-container {
-    color: var(--secondary-grey);
+    color: var(--app-content-grey);
     font-size: 0.75rem;
     margin: 0.5rem 1rem 0 1rem;
-    
 }
 
 .pin-btn {
