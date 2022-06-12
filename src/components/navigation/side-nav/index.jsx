@@ -6,7 +6,7 @@ import { initialAuthValue } from "../../../reducers";
 const SideNav = () => {
 
     const navigate = useNavigate();
-    const { authDispatch } = useAuth();
+    const { authUser: { firstName, lastName }, authDispatch } = useAuth();
 
     const logoutHandler = () => {
 
@@ -72,7 +72,7 @@ const SideNav = () => {
                     <div className="avatar-icon avatar-circle avatar-sm avatar-border">                                   
                         <i className="fa-solid fa-user icon"></i>
                     </div>
-                    <div>Username</div>
+                    <div>{`${firstName} ${lastName}`}</div>
                 </div>
                 <button 
                     className="logout-btn btn-icon btn-sq"

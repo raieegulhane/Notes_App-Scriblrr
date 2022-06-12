@@ -1,7 +1,7 @@
 import "./home.css";
 import { useFilter, useNote, useComponent } from "../../contexts";
 import { SecondaryNav, NoteInputForm, NotesList } from "../../components";
-import { getFilteredAndSortedNotes } from "../../helper-functions/get-filtered-and-sorted-notes";
+import { getFilteredAndSortedNotes } from "../../utility-functons"
 
 
 const Home = () => {

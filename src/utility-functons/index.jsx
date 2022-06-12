@@ -8,3 +8,6 @@ export { filterByColorFunction } from "./filter-by-colors";
 // sorted array
 export { sortByPriorityFunction } from "./sort-by-priority";
 export { sortByDateFunction } from "./sort-by-date";
+
+// filtered and sorted notes
+export { getFilteredAndSortedNotes } from "./get-filtered-and-sorted-notes";
