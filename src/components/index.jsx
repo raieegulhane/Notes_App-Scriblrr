@@ -20,5 +20,3 @@ export { RichTextEditor } from "./notes/text-editor";
 
 // password input
 export { PasswordInput } from "./password-input";
-
-

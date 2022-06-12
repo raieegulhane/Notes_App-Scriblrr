@@ -1,12 +1,6 @@
-.notes-list-wrapper {
-    height: 75vh;
-    padding: 2rem;
-    overflow-y: auto;
-}
-
 .notes-list-container {
     flex-wrap: wrap;
-    /* align-content: flex-start; */
+    gap: 1rem;
 }
 
 img {

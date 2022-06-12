@@ -1,0 +1,16 @@
+.home-notes-list-wrapper {
+    height: 75vh;
+    padding: 0 3rem;
+    margin: 0 2rem;
+    overflow-y: auto;
+}
+
+.home-notes-container {
+    margin: 1rem 0 4rem;
+
+}
+
+.home-list-heading {
+    font-size: 1rem;
+    margin: 1rem;
+}

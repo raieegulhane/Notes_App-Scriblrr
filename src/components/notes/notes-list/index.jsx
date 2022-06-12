@@ -4,7 +4,7 @@ import { NoteCard } from "../../../components";
 const NotesList = ({ inputNotesArray }) => {
     return(
         <div className="notes-list-wrapper">
-            <div className="notes-list-container flex-row flex_justify-center">
+            <div className="notes-list-container flex-row">
                 {
                     inputNotesArray.map((currentNote) => {
                         return(
