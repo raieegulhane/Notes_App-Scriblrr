@@ -1,5 +1,6 @@
 // dropdowns
-export { FilterDropdown, SortDropdown } from "./dropdowns";
+export { FilterDropdown } from "./dropdowns/filter-dropdown";
+export { SortDropdown } from "./dropdowns/sort-dropdown";
 
 // label-editor
 export { LabelEditor } from "./label-editor";

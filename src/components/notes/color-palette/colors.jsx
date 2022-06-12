@@ -7,43 +7,35 @@ const colorsArray = [
     },
     {
         id: uuid(),
-        color: "#f28b82"
+        color: "#ffd5d1"
     },
     {
         id: uuid(),
-        color: "#fbbc04"
+        color: "#fff4d1"
     },
     {
         id: uuid(),
-        color: "#fff475"
+        color: "#eaffd2"
     },
     {
         id: uuid(),
-        color: "#ccff90"
+        color: "#d2fff5"
     },
     {
         id: uuid(),
-        color: "#a7ffeb"
+        color: "#d2f7ff"
     },
     {
         id: uuid(),
-        color: "#cbf0f8"
+        color: "#d1e3ff"
     },
     {
         id: uuid(),
-        color: "#aecbfa"
+        color: "#ead1ff" 
     },
     {
         id: uuid(),
-        color: "#d7aefb" 
-    },
-    {
-        id: uuid(),
-        color: "#fdcfe8"
-    },
-    {
-        id: uuid(),
-        color: "#e6c9a8"
+        color: "#ffd1ea"
     },
     {
         id: uuid(),

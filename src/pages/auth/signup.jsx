@@ -14,7 +14,7 @@ const Signup = () => {
 
     useEffect(() => {
         isAuth && navigate(location?.state?.from ? location.state.from : "/home", { replace: true});
-    }, [isAuth, location.state.from, navigate]);
+    }, [isAuth]);
 
     const [userData, setUserData] = useState(
         {

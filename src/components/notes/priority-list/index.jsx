@@ -5,15 +5,18 @@ import { v4 as uuid } from "uuid";
 const priorityListValues = [
     {
         id: uuid(),
-        priorityValue: "High"
+        priority: "High",
+        value: 1
     }, 
     {
         id: uuid(),
-        priorityValue: "Medium"
+        priority: "Medium",
+        value: 2
     },
     {
         id: uuid(),
-        priorityValue: "Low"
+        priority: "Low",
+        value: 3
     }
 ];
 
@@ -22,16 +25,16 @@ const PriorityList = ({ onClick }) => {
         <div className="priority-list-wrapper">
             <ul className="list-noBullets list-inline">
                 {
-                    priorityListValues.map(({ id, priorityValue }) => {
+                    priorityListValues.map(({ id, priority, value }) => {
                         return(
                             <li key={id}>
                                 <button 
                                     className="priority-option"
                                     name="notePriority"
-                                    value={priorityValue}
+                                    value={value}
                                     onClick={onClick}    
                                 >
-                                    {priorityValue}
+                                    {priority}
                                 </button>
                             </li>
                         );

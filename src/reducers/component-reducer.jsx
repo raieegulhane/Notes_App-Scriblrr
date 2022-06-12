@@ -8,7 +8,7 @@ const initialComponentValues = {
     showLabelDeleteConfirmation: false,
 }
 
-const componentReducer = (state, action) => {
+const componentReducerFunction = (state, action) => {
     const {
         showTextEditor,
         showColorPalette,
@@ -47,4 +47,4 @@ const componentReducer = (state, action) => {
     }
 }
 
-export { initialComponentValues, componentReducer };
+export { initialComponentValues, componentReducerFunction };

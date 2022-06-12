@@ -12,7 +12,18 @@ import {
 
 
 const NoteCard = ({ currentNote }) => {
-    const { _id, noteTitle, noteBody, noteColor, noteLabels, isPinned, isArchived, isTrashed } = currentNote;
+    const { _id, 
+            noteTitle, 
+            noteBody, 
+            noteColor, 
+            noteLabels, 
+            isPinned, 
+            isArchived, 
+            isTrashed, 
+            displayDate, 
+            displayTime 
+        } = currentNote;
+
     const { authToken } = useAuth(); 
     const { noteDispatch } = useNote();
     const { componentDispatch } = useComponent();
@@ -24,10 +35,6 @@ const NoteCard = ({ currentNote }) => {
             return "card-btn-visible"
         } 
         return "card-btn-hidden"
-    }
-
-    const pinNoteHandler = () => {
-        noteDispatch({ type: "SET_PINNED_NOTES", payload: { _id }});
     }
 
     const editNoteHandler = () => {
@@ -70,11 +77,20 @@ const NoteCard = ({ currentNote }) => {
     return(
         <div 
             style={{ backgroundColor: noteColor }}
-            className="note-card-wrapper flex-col flex_justify-sb">
+            className="note-card-wrapper flex-col flex_justify-sb"
+            onMouseOver={() => setEditorVisibility(true)}
+            onMouseOut={() => setEditorVisibility(false)}
+        >
+            <div>
+                <div className="note-timestamp-container flex-col">
+                    <p>{displayDate}</p>
+                    <p>{displayTime}</p>
+                </div>    
 
-            <div className="note-content-display">
-                <h3 className="note-card-title">{noteTitle}</h3>
-                <div>{parse(`${noteBody}`)}</div>
+                <div className="note-content-display">
+                    <h3 className="note-card-title">{noteTitle}</h3>
+                    <div>{parse(`${noteBody}`)}</div>
+                </div>
             </div>
 
             <div className="flex-col">
@@ -93,28 +109,18 @@ const NoteCard = ({ currentNote }) => {
                     }
                 </div>
                 
-                <div className="edit-panel flex-row flex_justify-end flex_align-middle">
+                <div 
+                    className="edit-panel flex-row flex_justify-end flex_align-middle"
+                >
                     {
                         isPinned &&
-                        <button 
-                            className={`btn btn-icon editor-btn pin-btn pinned`}
-                            onClick={pinNoteHandler}
-                        >
+                        <button className={`btn btn-icon editor-btn pin-btn pinned`}>
                             <i className="fa-solid fa-thumbtack"></i>
                         </button>
                     }
                     {
                         !isArchived && !isTrashed &&
                         <div className="flex-row">
-                            {
-                                !isPinned &&
-                                <button 
-                                    className={`btn btn-icon editor-btn pin-btn ${showCardButtons()}`}
-                                    onClick={pinNoteHandler}
-                                >
-                                    <i className="fa-solid fa-thumbtack"></i>
-                                </button>
-                            }
                             <button 
                                 className={`btn btn-icon editor-btn card-btn ${showCardButtons()}`}
                                 onClick={editNoteHandler}
@@ -170,10 +176,7 @@ const NoteCard = ({ currentNote }) => {
                         </div>
                     }
 
-                    <button 
-                        className="btn btn-icon editor-btn card-btn "
-                        onClick={() => setEditorVisibility(!editorVisibility)}
-                    >
+                    <button className="btn btn-icon editor-btn card-btn">
                         <i className="fa-solid fa-ellipsis-vertical"></i>
                     </button>
                 </div>

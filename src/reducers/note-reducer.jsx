@@ -4,13 +4,12 @@ const initialNotesData = {
     allNotes: [],
     archivedNotes: [],
     trashedNotes: [],
-    // pinnedNotes: [],
     allLabels: [],
     isEditing: false,
     isEditingId: ""
 };
 
-const noteReducer = (state, { type, payload }) => {
+const noteReducerFunction = (state, { type, payload }) => {
     const { notes, archives, trash, _id, editNoteStatus, editNoteId } = payload;
     const { allNotes, allLabels } = state;
 
@@ -23,16 +22,6 @@ const noteReducer = (state, { type, payload }) => {
 
         case "EDIT_NOTE": 
             return({ ...state, isEditing: editNoteStatus, isEditingId: editNoteId });
-
-        case "SET_PINNED_NOTES":
-            return({
-                ...state,
-                allNotes: allNotes.map((note) => (
-                    note._id === _id ?
-                    { ...note, isPinned: !note.isPinned } :
-                    { note }
-                ))
-            });
 
         case "SET_ARCHIVED_NOTES":
             return({ ...state, allNotes: notes, archivedNotes: archives });
@@ -56,4 +45,4 @@ const noteReducer = (state, { type, payload }) => {
     }    
 }
 
-export { initialNotesData, noteReducer };
+export { initialNotesData, noteReducerFunction };

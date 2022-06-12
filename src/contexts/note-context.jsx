@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
 import { useAuth } from "../contexts";
-import { initialNotesData, noteReducer } from "../reducers";
+import { initialNotesData, noteReducerFunction } from "../reducers";
 import { getNoteService } from "../services";
 
 const NoteContext = createContext();
@@ -8,7 +8,7 @@ const NoteContext = createContext();
 const NoteProvider = ({ children }) => {
     const { isAuth } = useAuth();
 
-    const [noteState, noteDispatch] = useReducer(noteReducer, initialNotesData);
+    const [noteState, noteDispatch] = useReducer(noteReducerFunction, initialNotesData);
 
     const fetchNotes = async (token) => {
         try {

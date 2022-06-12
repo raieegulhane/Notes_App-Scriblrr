@@ -1,11 +1,17 @@
 import "./home.css";
-import { useNote, useComponent } from "../../contexts";
+import { useFilter, useNote, useComponent } from "../../contexts";
 import { SecondaryNav, NoteInputForm, NotesList } from "../../components";
+import { getFilteredAndSortedNotes } from "../../helper-functions/get-filtered-and-sorted-notes";
+
 
 const Home = () => {
+    const { filterState } = useFilter();
     const { noteState } = useNote();
     const { allNotes } = noteState;
     const { componentState } = useComponent();
+
+    const filteredAndSortedNotes = getFilteredAndSortedNotes(allNotes, filterState);
+
     return(
         <div className="flex-col">
             <SecondaryNav />
@@ -15,7 +21,7 @@ const Home = () => {
             }
             <div>
             <NotesList 
-                inputNotesArray={allNotes}
+                inputNotesArray={filteredAndSortedNotes}
             />
             </div>
         </div>

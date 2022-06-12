@@ -13,7 +13,7 @@ const Login = () => {
 
     useEffect(() => {
         isAuth && navigate(location?.state?.from ? location.state.from : "/home", { replace: true });
-    }, [isAuth, location.state.from, navigate]);
+    }, [isAuth]);
 
     const [loginCreds, setLoginCreds] = useState({email: "", password: ""});
     const { email, password } = loginCreds;

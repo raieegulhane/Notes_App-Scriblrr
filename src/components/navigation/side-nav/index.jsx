@@ -40,7 +40,7 @@ const SideNav = () => {
                     style={getActiveStyle}
                 >
                     <i className="fa-solid fa-house"></i>
-                    <h2>Home</h2>
+                    <h3>Home</h3>
                 </NavLink>
                 <NavLink 
                     to="/labels" 
@@ -48,7 +48,7 @@ const SideNav = () => {
                     style={getActiveStyle}
                 >
                     <i className="fa-solid fa-tag"></i>
-                    <h2>Labels</h2>
+                    <h3>Labels</h3>
                 </NavLink>
                 <NavLink 
                     to="/archive" 
@@ -56,7 +56,7 @@ const SideNav = () => {
                     style={getActiveStyle}
                 >
                     <i className="fa-solid fa-box-archive"></i>
-                    <h2>Archive</h2>
+                    <h3>Archive</h3>
                 </NavLink>
                 <NavLink 
                     to="/trash" 
@@ -64,10 +64,10 @@ const SideNav = () => {
                     style={getActiveStyle}
                 >
                     <i className="fa-solid fa-trash-can"></i>
-                    <h2>Trash</h2>
+                    <h3>Trash</h3>
                 </NavLink>
             </div>
-            <div className="user-operation flex-row flex_align-middle flex_justify-sa">
+            <div className="user-operation flex-row flex_align-middle">
                 <div className="user-avatar flex-row flex_align-middle">
                     <div className="avatar-icon avatar-circle avatar-sm avatar-border">                                   
                         <i className="fa-solid fa-user icon"></i>
@@ -75,7 +75,7 @@ const SideNav = () => {
                     <div>Username</div>
                 </div>
                 <button 
-                    className="btn-icon btn-sq"
+                    className="logout-btn btn-icon btn-sq"
                     onClick={logoutHandler}
                 >
                     <i className="fa-solid fa-arrow-right-from-bracket logout-icon"></i>
