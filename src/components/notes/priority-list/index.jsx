@@ -1,5 +1,6 @@
-import { v4 as uuid } from "uuid";
 import "./priority-list.css";
+import { v4 as uuid } from "uuid";
+
 
 const priorityListValues = [
     {

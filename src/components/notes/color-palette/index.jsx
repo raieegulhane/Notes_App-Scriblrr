@@ -1,6 +1,6 @@
 import "./color-palette.css";
 import { colorsArray } from "./colors";
-import { useComponent } from "../../../contexts/component-context";
+import { useComponent } from "../../../contexts";
 
 const ColorPalette = ({ onClick}) => {
 
@@ -34,4 +34,4 @@ const ColorPalette = ({ onClick}) => {
     );
 }
 
-export { ColorPalette }
+export { ColorPalette };

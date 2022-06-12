@@ -45,8 +45,8 @@ export const createNoteHandler = function (schema, request) {
       );
     }
     const { note } = JSON.parse(request.requestBody);
-    if (!note.tags) {
-      user.notes.push({ ...note, _id: uuid(), tags: [] });
+    if (!note.noteLabels) {
+      user.notes.push({ ...note, _id: uuid(), noteLabels: [] });
     } else {
       user.notes.push({ ...note, _id: uuid() });
     }
@@ -151,7 +151,7 @@ export const archiveNoteHandler = function (schema, request) {
     const { noteId } = request.params;
     const archivedNote = user.notes.filter((note) => note._id === noteId)[0];
     user.notes = user.notes.filter((note) => note._id !== noteId);
-    user.archives.push({ ...archivedNote });
+    user.archives.push({ ...archivedNote, isArchived: true });
     this.db.users.update({ _id: user._id }, user);
     return new Response(
       201,
@@ -189,10 +189,12 @@ export const trashNoteHandler = function (schema, request) {
     }
     const { noteId } = request.params;
     const trashedNote = user.notes.filter((note) => note._id === noteId)[0];
+    const trashedArchivedNotes = user.archives.filter((note) => note._id === noteId)[0];
     user.notes = user.notes.filter((note) => note._id !== noteId);
-    user.trash.push({ ...trashedNote });
+    user.archives = user.archives.filter((note) => note._id !== noteId);
+    user.trash.push({ ...trashedNote, ...trashedArchivedNotes, isTrashed: true });
     this.db.users.update({ _id: user._id }, user);
-    return new Response(201, {}, { trash: user.trash, notes: user.notes });
+    return new Response(201, {}, { trash: user.trash, notes: user.notes, archives: user.archives });
   } catch (error) {
     return new Response(
       500,

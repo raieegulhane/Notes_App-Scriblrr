@@ -1,7 +1,7 @@
 import "./label-editor.css";
-import { useComponent } from "../../contexts/component-context";
-import { useNote } from "../../contexts/note-context";
 import { useState } from "react";
+import { useNote, useComponent } from "../../contexts";
+
 
 const LabelEditor = ({ onClick }) => {
     const { componentDispatch } = useComponent();

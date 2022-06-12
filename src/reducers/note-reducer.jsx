@@ -3,15 +3,46 @@ import { v4 as uuid } from "uuid";
 const initialNotesData = {
     allNotes: [],
     archivedNotes: [],
-    deletedNotes: [],
-    pinnedNotes: [],
+    trashedNotes: [],
+    // pinnedNotes: [],
     allLabels: [],
+    isEditing: false,
+    isEditingId: ""
 };
 
 const noteReducer = (state, { type, payload }) => {
-    const { allNotes, archivedNotes, deletedNotes, pinnedNotes, allLabels } = state;
+    const { notes, archives, trash, _id, editNoteStatus, editNoteId } = payload;
+    const { allNotes, allLabels } = state;
 
-    switch(type) {
+    switch(type) { 
+        case "SET_NOTES": 
+        return({ ...state, allNotes: payload });
+
+        case "GET_NOTES": 
+            return({ ...state, allNotes: payload });
+
+        case "EDIT_NOTE": 
+            return({ ...state, isEditing: editNoteStatus, isEditingId: editNoteId });
+
+        case "SET_PINNED_NOTES":
+            return({
+                ...state,
+                allNotes: allNotes.map((note) => (
+                    note._id === _id ?
+                    { ...note, isPinned: !note.isPinned } :
+                    { note }
+                ))
+            });
+
+        case "SET_ARCHIVED_NOTES":
+            return({ ...state, allNotes: notes, archivedNotes: archives });
+
+        case "SET_TRASHED_NOTES": 
+            return({ ...state, allNotes: notes, archivedNotes: archives, trashedNotes: trash });
+
+        case "PERMANANT_DELETE_NOTE": 
+            return({ ...state, trashedNotes: trash });
+
         case "ADD_NEW_LABEL":
             return allLabels.findIndex(({ labelValue }) => labelValue === payload) < 0 ? 
                 { ...state, allLabels: [ ...allLabels, {id: uuid(), labelValue: payload} ]} :
@@ -23,9 +54,6 @@ const noteReducer = (state, { type, payload }) => {
         default:
             return({ ...initialNotesData });
     }    
-
-    
-
 }
 
 export { initialNotesData, noteReducer };

@@ -1,12 +1,16 @@
 import "./note-input-form.css";
-import { useComponent } from "../../../contexts/component-context";
-import { RichTextEditor } from "../text-editor";
-import { ColorPalette } from "../color-palette";
-import { PriorityList } from "../priority-list";
-import { LabelEditor } from "../../label-editor";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAuth, useNote, useComponent } from "../../../contexts";
+import { postNoteService, editNoteService } from "../../../services";
+import { RichTextEditor, ColorPalette, PriorityList, LabelEditor } from "../../../components";
+
 
 const NoteInputForm = () => {
+    const { authToken } = useAuth();
+
+    const { noteState, noteDispatch } = useNote();
+    const { allNotes, isEditing, isEditingId } = noteState;
+
     const { componentState, componentDispatch } = useComponent();
     const { showColorPalette, showPriorityOptions, showLabelEditor } = componentState;
 
@@ -17,39 +21,70 @@ const NoteInputForm = () => {
         notePriority: "Low",
         noteLabels: [],
         isPinned: false,
-        isEditing: false,
         isArchived: false,
-        isDeleted: false,
+        isTrashed: false,
     }
 
     const [noteValues, setNoteValues] = useState(initialNoteValues);
-
     const {
         noteTitle,
         noteBody,
         noteColor,
         noteLabels,
         isPinned,
-        isEditing
     } = noteValues;
 
     const updateNoteValues = (event) => {
         const { name, value } = event.target;
-        setNoteValues((noteValues) => ({ ...noteValues, [name]: value }));
+        setNoteValues((prevNoteValues) => ({ ...prevNoteValues, [name]: value }));
     }
 
     const updateNoteBody = (value) => {
-        setNoteValues((noteValues) => ({ ...noteValues, noteBody: value}));
+        setNoteValues((prevNoteValues) => ({ ...prevNoteValues, noteBody: value}));
     }
 
-    const updateNoteLabels = (labelId, labelValue) => {
-        setNoteValues((noteValues) => ({ ...noteValues, noteLabels: [...noteLabels, { id: labelId, value: labelValue }]}))
+    const addNoteLabels = (labelId, labelValue) => {
+        setNoteValues((prevNoteValues) => ({ 
+            ...prevNoteValues, 
+            noteLabels: noteLabels.findIndex((label) => label.id === labelId) < 0 ?
+                [ ...noteLabels, { id: labelId, value: labelValue } ]:
+                [ ...noteLabels ]
+        }))
     }
+
+    const removeNoteLabels = (labelId) => {
+        setNoteValues((prevNoteValues) => ({
+            ...prevNoteValues,
+            noteLabels: noteLabels.filter((label) => label.id !== labelId)
+        }))
+    }
+
+    console.log(noteLabels)
 
     const updatePinnedStatus = () => {
         setNoteValues({ ...noteValues, isPinned: !noteValues.isPinned});
     }
 
+    useEffect(() => {
+        if (isEditing) {
+            const currentNote = allNotes.find((note) => note._id === isEditingId);
+            setNoteValues(currentNote);
+        }
+    }, [isEditing]);
+
+    const setNote = async () => {
+        try {
+            const { data: { notes }} = isEditing ? 
+                await editNoteService(noteValues, authToken) :
+                await postNoteService(noteValues, authToken);
+
+            noteDispatch({ type: "SET_NOTES", payload: notes});
+            componentDispatch({ type: "SHOW_TEXT_EDITOR" });
+            noteDispatch({ type: "EDIT_NOTE", payload: { noteEditStatus: false, editNoteId: ""}})
+        } catch (error) {
+            console.log("ADD_NEW_NOTE_ERROR: ", error);
+        }
+    }
 
     return(
         <div className="note-input-wrapper flex flex_justify-center flex_align-middle">
@@ -80,6 +115,27 @@ const NoteInputForm = () => {
                             value={noteBody}
                             onChange={updateNoteBody}
                         />
+                    </div>
+
+                    <div className="editor-labels-display flex-row">
+                        {
+                            noteLabels.map(({ id, value }) => {
+                                return(
+                                    <div 
+                                        key = {id}
+                                        className=" flex-row flex_align-middle editor-label-chip btn-primary btn-cr"
+                                    >
+                                        <span>{value}</span>
+                                        <button 
+                                            className="chip-close-btn"
+                                            onClick={() => removeNoteLabels(id)}
+                                        >
+                                            <i className="fa-solid fa-xmark"></i>
+                                        </button>                                    
+                                    </div>
+                                );
+                            })
+                        }
                     </div>
                 </div>
 
@@ -122,7 +178,10 @@ const NoteInputForm = () => {
                         </div>
 
                         <div className="note-input-action flex-row flex_align-middle">
-                            <button className="btn btn-cr btn-primary btn-add-note">
+                            <button 
+                                className="btn btn-cr btn-primary btn-add-note"
+                                onClick={setNote}
+                            >
                                 { isEditing ? "Edit Note" : "Add Note" }
                             </button>
                         </div>
@@ -136,7 +195,7 @@ const NoteInputForm = () => {
                         {
                             showLabelEditor &&
                             <LabelEditor
-                                onClick={updateNoteLabels}
+                                onClick={addNoteLabels}
                             />
                         }
                     </div>

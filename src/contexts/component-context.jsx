@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
-import { initialComponentValues, componentReducer } from "../reducers/component-reducer";
+import { initialComponentValues, componentReducer } from "../reducers";
 
 const ComponentContext = createContext(initialComponentValues);
 
