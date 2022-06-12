@@ -6,7 +6,7 @@ import { colorsArray } from "../notes/color-palette/colors";
 const FilterDropdown = () => {
 
     const { filterState, filterDispatch } = useFilter();
-    const { filterByPriority: {HIGH, MEDIUM, LOW}, filterByColor } = filterState;
+    const { filterByPriority: {HIGH, MEDIUM, LOW} } = filterState;
 
     const { componentDispatch } = useComponent();
 

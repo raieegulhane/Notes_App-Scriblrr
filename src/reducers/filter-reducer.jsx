@@ -9,9 +9,6 @@ const initialFilterValues = {
 const filterReducerFunction = (state, { type, payload }) => {
     const { filterByPriority } = state;
     switch(type) {
-        // case "FILTER_BY_PRIORITY":
-        //     return({ ...state, filterByPriority: payload });
-
         case "PRIORITY_HIGH":
             return({
                 ...state,
@@ -40,10 +37,10 @@ const filterReducerFunction = (state, { type, payload }) => {
             return({ ...state, filterByColor: "", filterByPriority: "" });
 
         case "SORT_BY_PRIORITY": 
-            return({ ...state, sortByDate: payload });
+            return({ ...state, sortByPriority: payload, sortByDate: "" });
 
         case "SORT_BY_DATE":
-            return({ ...state, sortByPriority: payload });
+            return({ ...state, sortByDate: payload, sortByPriority: "" });
 
         case "CLEAR_SORT": 
             return({ ...state, sortByPriority: "", sortByDate: ""});

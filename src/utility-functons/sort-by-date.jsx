@@ -1,14 +1,16 @@
 const sortByDateFunction = (notesArray, sortByDate) => {
-    if (!sortByDate) {
-        return([ ...notesArray ]);
-    }
+    switch (sortByDate) {
+        case false:
+            return([ ...notesArray ]);
 
-    if (sortByDate === "NEWEST_FIRST") {
-        return([ ...notesArray ].sort((note1, note2) => note2.noteTimestamp - note1.noteTimestamp));
-    }
+        case "NEWEST_FIRST": 
+            return([ ...notesArray ].sort((note1, note2) => new Date(note2.noteTimestamp) - new Date(note1.noteTimestamp)));
 
-    if (sortByDate === "OLDEST_FIRST") {
-        return([ ...notesArray ].sort((note1, note2) => note1.noteTimestamp - note2.noteTimestamp));
+        case "OLDEST_FIRST":
+            return([ ...notesArray ].sort((note1, note2) => new Date(note1.noteTimestamp) - new Date(note2.noteTimestamp)));
+
+        default:
+            return([ ...notesArray ]);
     }
 }
 

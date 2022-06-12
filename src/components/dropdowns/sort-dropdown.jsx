@@ -4,7 +4,7 @@ import { useFilter, useComponent } from "../../contexts";
 
 const SortDropdown = () => {
 
-    const { filterDispatch } = useFilter();
+    const { filterState: { sortByPriority, sortByDate }, filterDispatch } = useFilter();
     const { componentDispatch } = useComponent();
 
     return(
@@ -16,6 +16,7 @@ const SortDropdown = () => {
                 <i className="fa-solid fa-xmark"></i>
             </button>
             
+            {/* fiter by priority */}
             <div className="dropdown-section flex-col flex_justify-start">
                 <h4>Priority:</h4>
                 <label 
@@ -26,9 +27,10 @@ const SortDropdown = () => {
                         id="high-to-low"
                         className="dropdown-input" 
                         type="radio"
-                        name="sort-by-priority"  
+                        name="sort"  
                         value="high-to-low"
-                        onClick={() => filterDispatch({ type: "SORT_BY_PRIORITY", payload: "HIGH_TO_LOW"})}
+                        checked={ sortByPriority === "HIGH_TO_LOW" }
+                        onChange={() => filterDispatch({ type: "SORT_BY_PRIORITY", payload: "HIGH_TO_LOW"})}
                     />
                     High to low
                 </label>
@@ -40,14 +42,16 @@ const SortDropdown = () => {
                         id="low-to-high"
                         className="dropdown-input" 
                         type="radio"
-                        name="sort-by-priority"  
+                        name="sort"  
                         value="low-to-high"
-                        onClick={() => filterDispatch({ type: "SORT_BY_PRIORITY", payload: "LOW_TO_HIGH"})}
+                        checked={ sortByPriority === "LOW_TO_HIGH" }
+                        onChange={() => filterDispatch({ type: "SORT_BY_PRIORITY", payload: "LOW_TO_HIGH"})}
                     />
                     Low to high
                 </label>
             </div>
 
+            {/* filter by date */}
             <div className="dropdown-section flex-col flex_justify-start">
                 <h4>Date:</h4>
                 <label 
@@ -58,9 +62,10 @@ const SortDropdown = () => {
                         id="newest-first"
                         className="dropdown-input" 
                         type="radio"
-                        name="sort-by-date"
-                        value="newest-first"  
-                        onClick={() => filterDispatch({ type: "SORT_BY_DATE", payload: "NEWEST_FIRST"})}
+                        name="sort"
+                        value="newest-first" 
+                        checked={ sortByDate === "NEWEST_FIRST" }
+                        onChange={() => filterDispatch({ type: "SORT_BY_DATE", payload: "NEWEST_FIRST"})}
                     />
                     Newest first
                 </label>
@@ -72,12 +77,28 @@ const SortDropdown = () => {
                         id="oldest-first"
                         className="dropdown-input" 
                         type="radio"
-                        name="sort-by-date"  
+                        name="sort"  
                         value="oldest-first"
-                        onClick={() => filterDispatch({ type: "SORT_BY_DATE", payload: "OLDEST_FIRST"})}
+                        checked={ sortByDate === "OLDEST_FIRST" }
+                        onChange={() => filterDispatch({ type: "SORT_BY_DATE", payload: "OLDEST_FIRST"})}
                     />
                     Oldest first
                 </label>
+            </div>
+
+            <div className="clear-btn-container flex-col ">
+                <button 
+                    className="clear-btn"
+                    onClick={() => filterDispatch({ type: "CLEAR_SORT" })}    
+                >
+                    Clear Sort Options
+                </button>
+                <button 
+                    className="clear-btn"
+                    onClick={() => filterDispatch({ type: "CLEAR_ALL" })}    
+                >
+                    Clear All
+                </button>
             </div>
         </div>
     );
