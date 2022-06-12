@@ -1,11 +1,10 @@
 import "./secondary-nav.css";
-import { useComponent } from "../../../contexts";
+import { useNote, useComponent } from "../../../contexts";
 import { SortDropdown, FilterDropdown } from "../../../components";
 
 const SecondaryNav = () => {
-
-    const { componentState, componentDispatch } = useComponent();
-    const { showFilterDropdown, showSortDropdown } = componentState;
+    const { componentState: { showFilterDropdown, showSortDropdown }, componentDispatch } = useComponent();
+    const { noteDispatch } = useNote();
 
     return(
         <div className="sec-nav-wrapper flex-row flex_justify-center">
@@ -16,7 +15,9 @@ const SecondaryNav = () => {
                     </button>  
                     <input 
                         className="search-input input input-sq" 
+                        type="text"
                         placeholder="Search notes..."
+                        onChange={(e) => noteDispatch({ type: "SET_SEARCHED_NOTES", payload: e.target.value })}
                     />
                     <button 
                         className="search-btn btn btn-rd"

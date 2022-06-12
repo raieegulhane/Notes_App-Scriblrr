@@ -6,11 +6,15 @@ const initialNotesData = {
     trashedNotes: [],
     allLabels: [],
     isEditing: false,
-    isEditingId: ""
+    isEditingId: "",
+    searchResults: {
+        searching: false,
+        searchedNotes: []
+    }
 };
 
 const noteReducerFunction = (state, { type, payload }) => {
-    const { notes, archives, trash, _id, editNoteStatus, editNoteId } = payload;
+    const { notes, archives, trash, editNoteStatus, editNoteId } = payload;
     const { allNotes, allLabels } = state;
 
     switch(type) { 
@@ -36,6 +40,15 @@ const noteReducerFunction = (state, { type, payload }) => {
             return allLabels.findIndex(({ labelValue }) => labelValue === payload) < 0 ? 
                 { ...state, allLabels: [ ...allLabels, {id: uuid(), labelValue: payload} ]} :
                 {...state};
+
+        case "SET_SEARCHED_NOTES":
+            return({
+                ...state,
+                searchResults: {
+                    searching: payload ? true : false,
+                    searchedNotes: [ ...allNotes ].filter((note) => note.noteTitle.includes(payload) || note.noteBody.includes(payload))
+                }
+            })
 
         case "DELETE_LABEL":
             return({ ...state, allLabels: allLabels.filter(({ id }) => id !== payload) });
