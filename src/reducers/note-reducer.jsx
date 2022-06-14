@@ -15,7 +15,7 @@ const initialNotesData = {
 
 const noteReducerFunction = (state, { type, payload }) => {
     const { notes, archives, trash, editNoteStatus, editNoteId } = payload;
-    const { allNotes, allLabels } = state;
+    const { allNotes, archivedNotes, trashedNotes, allLabels } = state;
 
     switch(type) { 
         case "SET_NOTES": 
@@ -41,6 +41,23 @@ const noteReducerFunction = (state, { type, payload }) => {
                 { ...state, allLabels: [ ...allLabels, {id: uuid(), labelValue: payload} ]} :
                 {...state};
 
+        case "DELETE_LABEL":
+            return({ 
+                ...state,
+                allNotes: allNotes.map((note) => {
+                    const { noteLabels } = note;
+                    return {...note, noteLabels: [ ...noteLabels].filter((label) => label.id !== payload)}
+                }),
+                archivedNotes: archivedNotes.map((note) => {
+                    const { noteLabels } = note;
+                    return {...note, noteLabels: [ ...noteLabels].filter((label) => label.id !== payload)}
+                }),
+                trashedNotes: trashedNotes.map((note) => {
+                    const { noteLabels } = note;
+                    return {...note, noteLabels: [ ...noteLabels].filter((label) => label.id !== payload)}
+                }), 
+                allLabels: allLabels.filter(({ id }) => id !== payload) });
+
         case "SET_SEARCHED_NOTES":
             return({
                 ...state,
@@ -49,9 +66,6 @@ const noteReducerFunction = (state, { type, payload }) => {
                     searchedNotes: [ ...allNotes ].filter((note) => note.noteTitle.includes(payload) || note.noteBody.includes(payload))
                 }
             })
-
-        case "DELETE_LABEL":
-            return({ ...state, allLabels: allLabels.filter(({ id }) => id !== payload) });
 
         default:
             return({ ...initialNotesData });
