@@ -1,5 +1,4 @@
 .add-label-bar {
-    position: fixed;
     margin: 2rem;
 }
 
@@ -20,7 +19,7 @@
 .labels-display-container {
     flex-wrap: wrap;
     max-width: 80%;
-    max-height: 120px;
+    max-height: 100px;
     margin: auto;
     overflow-y: auto;
 }
@@ -33,7 +32,6 @@
     border: none;
     margin: 0.25rem;
     gap: 1.5rem;
-    cursor: default;    
 }
 
 .btn-icon.label-delete-btn {
@@ -73,6 +71,24 @@
 .btn.del-confirmation-btn {
     font-size: 0.75rem;
     margin: 0 0.5rem;
+}
+
+.label-notes-container {
+    height: 66vh;
+    padding: 1rem 2rem;
+    border-top: 1px solid var(--secondary-grey);
+    margin: 2rem 0rem 0 3rem;
+    overflow-y: auto;
+
+}
+
+.label-name {
+    color: var(--primary-color-highlight);
+    text-transform: uppercase;
+}
+
+.label-page-note {
+    padding: 0.5rem 0.5rem 1rem;
 }
 
 

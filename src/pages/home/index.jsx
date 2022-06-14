@@ -39,6 +39,13 @@ const Home = () => {
                 }
 
                 {
+                    allNotes.length <= 0 &&
+                    <p className="flex flex_justify-center flex_align-middle">
+                        You dont have any notes.
+                    </p> 
+                }
+
+                {
                     searching && searchedNotes.length > 0 &&
                     <div className="home-notes-container">
                         <h2 className="home-list-heading">SEARCHED NOTES</h2>
