@@ -9,6 +9,7 @@ import {
     restoreTrashedNoteService,
     deleteTrashService
 } from "../../../services";
+import { useToast } from "../../../custom-hooks";
 
 
 const NoteCard = ({ currentNote }) => {
@@ -27,6 +28,8 @@ const NoteCard = ({ currentNote }) => {
     const { authToken } = useAuth(); 
     const { noteDispatch } = useNote();
     const { componentDispatch } = useComponent();
+
+    const { showToast } = useToast();
 
     const [editorVisibility, setEditorVisibility] = useState(false);
 
@@ -47,8 +50,11 @@ const NoteCard = ({ currentNote }) => {
             const { data: { notes, archives } } = isArchived ? 
                 await restoreArchiveService(currentNote, authToken) :
                 await postArchiveService(currentNote, authToken);
-            noteDispatch({ type: "SET_ARCHIVED_NOTES", payload: { notes, archives } });            
+            noteDispatch({ type: "SET_ARCHIVED_NOTES", payload: { notes, archives } });   
+            
+            showToast("success", `Note ${ isArchived ? "restored" : "archived"} successfully.`);
         } catch (error) {
+            showToast("error", `Error occured while ${ isArchived ? "restoring" : "archiving"} the note.`);
             console.log("POST_ARCHIVE_ERROR: ", error);
         }
     }
@@ -58,8 +64,11 @@ const NoteCard = ({ currentNote }) => {
             const { data: { notes, archives, trash } } = isTrashed ?
                 await restoreTrashedNoteService(currentNote, authToken) :
                 await trashNoteService(currentNote, authToken); 
-            noteDispatch({ type: "SET_TRASHED_NOTES", payload: { notes, archives, trash } });            
+            noteDispatch({ type: "SET_TRASHED_NOTES", payload: { notes, archives, trash } });  
+            
+            showToast("success", `Note ${ isTrashed ? "restored" : "trashed"} successfully.`);
         } catch (error) {
+            showToast("error", `Error occured while ${ isTrashed ? "restoring" : "trashing"} the note.`);
             console.log("POST_TRASH_ERROR: ", error);
         }
     }
@@ -68,7 +77,10 @@ const NoteCard = ({ currentNote }) => {
         try {
             const { data: { trash } } = await deleteTrashService(currentNote, authToken);
             noteDispatch({ type: "PERMANANT_DELETE_NOTE", payload: { trash } });
+
+            showToast("success", "Note permanently deleted.");
         } catch (error) {
+            showToast("error", "Error occured while deleting the note.")
             console.log("DELETE_NOTE_ERROR: ", error);
         }
     }

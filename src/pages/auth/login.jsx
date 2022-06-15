@@ -4,12 +4,15 @@ import { loginService } from "../../services";
 import { useAuth } from "../../contexts";
 import { initialAuthValue } from "../../reducers";
 import { PasswordInput } from "../../components";
+import { useToast } from "../../custom-hooks";
 
 const Login = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
     const { isAuth, authError, authDispatch } = useAuth();
+
+    const { showToast } = useToast();
 
     useEffect(() => {
         isAuth && navigate(location?.state?.from ? location.state.from : "/home", { replace: true });
@@ -47,6 +50,7 @@ const Login = () => {
             localStorage.setItem("user-data", JSON.stringify(foundUser));
 
             navigate(location?.state?.from ? location.state.from : "/home" , {replace: true});
+            showToast("success", "Login successful")
         } catch (error) {
             console.log("LOGIN ERROR", error);
 
@@ -62,6 +66,8 @@ const Login = () => {
                     } 
                 }
             );
+
+            showToast("error", authError);
         }
     }
 
@@ -112,8 +118,6 @@ const Login = () => {
                     >
                         Continue as Guest
                     </button>
-
-                    {authError && <p>{authError}</p>}
                 </form>
 
                 <p className="terms-declaration txt-sm txt-center">

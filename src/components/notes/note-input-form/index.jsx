@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useAuth, useNote, useComponent } from "../../../contexts";
 import { postNoteService, editNoteService } from "../../../services";
 import { RichTextEditor, ColorPalette, PriorityList, LabelEditor } from "../../../components";
+import { useToast } from "../../../custom-hooks";
 import { getCreatedTimeStamp } from "../../../utility-functons";
 
 
@@ -14,6 +15,8 @@ const NoteInputForm = () => {
 
     const { componentState, componentDispatch } = useComponent();
     const { showColorPalette, showPriorityOptions, showLabelEditor } = componentState;
+
+    const { showToast } = useToast();
 
     const { currDateString, currTimeString } = getCreatedTimeStamp();
 
@@ -50,12 +53,17 @@ const NoteInputForm = () => {
     }
 
     const addNoteLabels = (labelId, labelValue) => {
+        const isLabelPresent = noteLabels.findIndex((label) => label.id === labelId) < 0 ? false : true;
         setNoteValues((prevNoteValues) => ({ 
             ...prevNoteValues, 
-            noteLabels: noteLabels.findIndex((label) => label.id === labelId) < 0 ?
+            noteLabels: !isLabelPresent ?
                 [ ...noteLabels, { id: labelId, value: labelValue } ]:
                 [ ...noteLabels ]
         }))
+
+        if (isLabelPresent) {
+            showToast("warning", "Label already present")
+        }
     }
 
     const removeNoteLabels = (labelId) => {
@@ -77,16 +85,23 @@ const NoteInputForm = () => {
     }, [isEditing]);
 
     const setNote = async () => {
-        try {
-            const { data: { notes }} = isEditing ? 
-                await editNoteService(noteValues, authToken) :
-                await postNoteService(noteValues, authToken);
-
-            noteDispatch({ type: "SET_NOTES", payload: notes});
-            componentDispatch({ type: "SHOW_TEXT_EDITOR" });
-            noteDispatch({ type: "EDIT_NOTE", payload: { noteEditStatus: false, editNoteId: ""}})
-        } catch (error) {
-            console.log("ADD_NEW_NOTE_ERROR: ", error);
+        if (noteBody) {
+            try {
+                const { data: { notes }} = isEditing ? 
+                    await editNoteService(noteValues, authToken) :
+                    await postNoteService(noteValues, authToken);
+    
+                noteDispatch({ type: "SET_NOTES", payload: notes});
+                componentDispatch({ type: "SHOW_TEXT_EDITOR" });
+                noteDispatch({ type: "EDIT_NOTE", payload: { noteEditStatus: false, editNoteId: ""}})
+    
+                showToast("success", `Note ${isEditing ? "edited" : "added"} successfully.`);
+            } catch (error) {
+                showToast("error", `Error occured while ${isEditing ? "editing" : "adding"} your note.`);
+                console.log("ADD_NEW_NOTE_ERROR: ", error);
+            }
+        } else {
+            showToast("warning", "Note should atleast have a body");
         }
     }
 

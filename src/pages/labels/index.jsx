@@ -2,9 +2,12 @@ import "./labels.css";
 import parse from 'html-react-parser';
 import { useState } from "react";
 import { useNote, useComponent } from "../../contexts";
+import { useToast } from "../../custom-hooks";
 
 
 const Labels = () => {
+    const { showToast }  = useToast();
+
     const { componentState, componentDispatch } = useComponent();
     const { showLabelDeleteConfirmation } = componentState;
 
@@ -21,6 +24,7 @@ const Labels = () => {
         if (event.key === "Enter" && value) {
             noteDispatch({ type: "ADD_NEW_LABEL", payload: newLabel });
             setNewLabel("");
+            showToast("success", "New label added!");
         }
     }
 
@@ -32,6 +36,7 @@ const Labels = () => {
     const deleteLabel = () => {
         noteDispatch({ type: "DELETE_LABEL", payload: selectedLabelId });
         componentDispatch({ type: "SHOW_LABEL_DELETE_CONFIRMATION" })
+        showToast("success", "Label deleted.");
     }
 
     const filterNotesByLabel = (labelId, labelName) => {

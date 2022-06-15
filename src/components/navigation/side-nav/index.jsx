@@ -2,9 +2,10 @@ import "./side-nav.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts";
 import { initialAuthValue } from "../../../reducers";
+import { useToast } from "../../../custom-hooks";
 
 const SideNav = () => {
-
+    const { showToast } = useToast();
     const navigate = useNavigate();
     const { authUser: { firstName, lastName }, authDispatch } = useAuth();
 
@@ -21,6 +22,7 @@ const SideNav = () => {
         );
 
         navigate("/login");
+        showToast("success", "Logout successful.")
     }
 
     const getActiveStyle = ({ isActive }) => {
