@@ -18,10 +18,6 @@ const Home = () => {
     return(
         <div className="flex-col">
             <SecondaryNav />
-            {
-                componentState.showTextEditor &&
-                <NoteInputForm />
-            }
 
             <div className="home-notes-list-wrapper">
                 {
