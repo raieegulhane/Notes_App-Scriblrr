@@ -1,6 +1,6 @@
 import "./home.css";
-import { useFilter, useNote, useComponent } from "../../contexts";
-import { SecondaryNav, NoteInputForm, NotesList } from "../../components";
+import { useFilter, useNote } from "../../contexts";
+import { SecondaryNav, NotesList } from "../../components";
 import { getFilteredAndSortedNotes } from "../../utility-functons"
 
 
@@ -8,7 +8,6 @@ const Home = () => {
     const { filterState } = useFilter();
     const { noteState } = useNote();
     const { allNotes, searchResults: { searching, searchedNotes } } = noteState;
-    const { componentState } = useComponent();
 
     const filteredAndSortedNotes = getFilteredAndSortedNotes(allNotes, filterState);
 
