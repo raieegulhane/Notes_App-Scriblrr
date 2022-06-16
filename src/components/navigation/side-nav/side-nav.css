@@ -1,10 +1,10 @@
 .container-sidenav {
     height: 90vh;
-    padding: 2.5rem 0;
+    padding: 2.5rem 0 1.5rem;
 }
 
 .container-links {
-    gap: 0.75rem;
+    gap: 0.25rem;
 }
 
 .page-link {
@@ -21,7 +21,8 @@
 }
 
 .user-operation {
-    padding-left: 2rem;
+    /* background-color: red; */
+    padding-left: 1rem;
     gap: 1rem
 }
 
@@ -32,6 +33,7 @@
 
 .user-avatar {
     font-size: 1rem;
+    margin: 0.75rem;
     gap: 0.75rem;
 }
 
@@ -40,9 +42,14 @@
     width: 2.5rem;
 }
 
-.btn-icon.logout-btn {
-    color: var(--app-content-grey);
-    font-size: 1.25rem;
+.username-display {
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.btn-wt-icon.logout-btn {
+    font-size: 0.75rem;
+    gap: 0.5rem;
     cursor: pointer;
 }
 

@@ -101,7 +101,7 @@ const NoteInputForm = () => {
                 console.log("ADD_NEW_NOTE_ERROR: ", error);
             }
         } else {
-            showToast("warning", "Note should atleast have a body");
+            showToast("warning", "Note should have a body");
         }
     }
 

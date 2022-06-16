@@ -69,17 +69,18 @@ const SideNav = () => {
                     <h3>Trash</h3>
                 </NavLink>
             </div>
-            <div className="user-operation flex-row flex_align-middle">
+            <div className="user-operation flex-col flex_justify-center">
                 <div className="user-avatar flex-row flex_align-middle">
                     <div className="avatar-icon avatar-circle avatar-sm avatar-border">                                   
                         <i className="fa-solid fa-user icon"></i>
                     </div>
-                    <div>{`${firstName} ${lastName}`}</div>
+                    <div className="username-display">{`${firstName} ${lastName}`}</div>
                 </div>
                 <button 
-                    className="logout-btn btn-icon btn-sq"
+                    className="logout-btn flex-row flex_justify-center flex_align-middle btn-wt-icon btn btn-outline btn-cr"
                     onClick={logoutHandler}
                 >
+                    <span>Logout</span>
                     <i className="fa-solid fa-arrow-right-from-bracket logout-icon"></i>
                 </button>   
             </div>
