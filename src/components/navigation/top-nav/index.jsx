@@ -1,4 +1,5 @@
 import "./top-nav.css";
+import { TungstenRounded } from '@mui/icons-material';
 import { Link } from "react-router-dom";
 
 const TopNav = () => {
@@ -6,7 +7,8 @@ const TopNav = () => {
         <div className="wrapper-topnav">
             <nav className="container-topnav flex-row flex_justify-sb flex_align-middle">
                 <div className="logoContainer">
-                    <Link className="logo link-noDecoration" to='/'>
+                    <Link className="logo link-noDecoration flex-row" to='/home'>
+                        <TungstenRounded fontSize="large" />
                         <h1>Scriblrr.</h1>
                     </Link>
                 </div>

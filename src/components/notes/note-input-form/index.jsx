@@ -2,7 +2,7 @@ import "./note-input-form.css";
 import { useState, useEffect } from "react";
 import { useAuth, useNote, useComponent } from "../../../contexts";
 import { postNoteService, editNoteService } from "../../../services";
-import { RichTextEditor, ColorPalette, PriorityList, LabelEditor } from "../../../components";
+import { RichTextEditor, ColorPalette, PriorityList, PriorityDisplay, LabelEditor } from "../../../components";
 import { useToast } from "../../../custom-hooks";
 import { getCreatedTimeStamp } from "../../../utility-functons";
 
@@ -40,6 +40,7 @@ const NoteInputForm = () => {
         noteBody,
         noteColor,
         noteLabels,
+        notePriority,
         isPinned,
     } = noteValues;
 
@@ -185,8 +186,11 @@ const NoteInputForm = () => {
                                     className="btn btn-icon editor-btn"
                                     onClick={() => componentDispatch({type: "SHOW_PRIORITY_OPTIONS"})}
                                 >
-                                    <i className="fa-solid fa-circle-exclamation"></i>
+                                     <PriorityDisplay 
+                                        notePriority={notePriority} 
+                                    />
                                 </button>
+                               
                                 {
                                     showPriorityOptions &&
                                     <PriorityList 

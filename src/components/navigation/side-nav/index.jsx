@@ -1,4 +1,5 @@
 import "./side-nav.css";
+import { HomeRounded, LocalOfferRounded, ArchiveRounded, DeleteRounded } from '@mui/icons-material';
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts";
 import { initialAuthValue } from "../../../reducers";
@@ -10,7 +11,6 @@ const SideNav = () => {
     const { authUser: { firstName, lastName }, authDispatch } = useAuth();
 
     const logoutHandler = () => {
-
         localStorage.removeItem("auth-token");
         localStorage.removeItem("user-data");
 
@@ -28,8 +28,8 @@ const SideNav = () => {
     const getActiveStyle = ({ isActive }) => {
         if (isActive) {
             return ({
-                backgroundColor: "#e7eaff",
-                color: "#7184ff" 
+                backgroundColor: "#f9f8ff",
+                color: "#52569b" 
             });
         }
     }
@@ -41,7 +41,7 @@ const SideNav = () => {
                     className="page-link flex-row flex_align-middle link-noDecoration" 
                     style={getActiveStyle}
                 >
-                    <i className="fa-solid fa-house"></i>
+                    <HomeRounded />
                     <h3>Home</h3>
                 </NavLink>
                 <NavLink 
@@ -49,7 +49,7 @@ const SideNav = () => {
                     className="page-link flex-row flex_align-middle link-noDecoration"
                     style={getActiveStyle}
                 >
-                    <i className="fa-solid fa-tag"></i>
+                    <LocalOfferRounded />
                     <h3>Labels</h3>
                 </NavLink>
                 <NavLink 
@@ -57,7 +57,7 @@ const SideNav = () => {
                     className="page-link flex-row flex_align-middle link-noDecoration"
                     style={getActiveStyle}
                 >
-                    <i className="fa-solid fa-box-archive"></i>
+                    <ArchiveRounded />
                     <h3>Archive</h3>
                 </NavLink>
                 <NavLink 
@@ -65,7 +65,7 @@ const SideNav = () => {
                     className="page-link flex-row flex_align-middle link-noDecoration"
                     style={getActiveStyle}
                 >
-                    <i className="fa-solid fa-trash-can"></i>
+                    <DeleteRounded />
                     <h3>Trash</h3>
                 </NavLink>
             </div>
