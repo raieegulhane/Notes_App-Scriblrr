@@ -10,10 +10,10 @@
     /* colors */
     --white: #ffffff;
     --black: #202124;
-    --primary-color: #919fff;
+    /* --primary-color: #919fff;
     --primary-color-highlight: #798bff;
     --secondary-color: #b3beff;
-    --accent-color: #cdd2ff;
+    --accent-color: #cdd2ff; */
     --primary-grey: #f7f7f7;
     --secondary-grey:#cbcbcb;
     --app-content-grey:#777c81;
@@ -22,4 +22,9 @@
     --grey2: #efefef;
     --grey3: #4b4d4f;
     --grey4: #3f3f3f;
+
+    --primary-color: #52569b;
+    --primary-color-highlight: #212d6c;
+    --secondary-color: #8282cc;
+    --accent-color: #f1f1f8;
 }

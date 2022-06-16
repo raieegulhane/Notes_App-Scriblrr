@@ -21,7 +21,6 @@
 }
 
 .user-operation {
-    /* background-color: red; */
     padding-left: 1rem;
     gap: 1rem
 }
@@ -33,7 +32,7 @@
 
 .user-avatar {
     font-size: 1rem;
-    margin: 0.75rem;
+    margin: 1rem 2rem;
     gap: 0.75rem;
 }
 
@@ -43,7 +42,7 @@
 }
 
 .username-display {
-    color: var(--text-color);
+    color: var(--grey3);
     font-weight: bold;
 }
 

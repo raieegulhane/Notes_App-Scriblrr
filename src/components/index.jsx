@@ -16,7 +16,11 @@ export { NoteCard } from "./notes/note-card";
 export { NoteInputForm } from "./notes/note-input-form";
 export { NotesList } from "./notes/notes-list";
 export { PriorityList } from "./notes/priority-list";
+export { PriorityDisplay } from "./notes/priority-display";
 export { RichTextEditor } from "./notes/text-editor";
 
 // password input
 export { PasswordInput } from "./password-input";
+
+// floating button
+export { AddNoteButton } from "./add-note-float-button";

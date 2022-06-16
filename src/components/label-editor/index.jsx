@@ -20,10 +20,6 @@ const LabelEditor = ({ onClick }) => {
         }
 
         if (event.key === "Enter" && value) {
-            const isLabelPresent = allLabels.findIndex((label) => label.value === newLabel);
-            if (isLabelPresent) {
-                showToast("warning", 'Label already present.');
-            }
             noteDispatch({ type: "ADD_NEW_LABEL", payload: newLabel });
             setNewLabel("");
         } 

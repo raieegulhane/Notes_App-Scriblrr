@@ -124,7 +124,7 @@ const Labels = () => {
                                     
                                                     <div className="note-content-display">
                                                         <h3 className="note-card-title">{noteTitle}</h3>
-                                                        <div>{parse(`${noteBody}`)}</div>
+                                                        <div className="note-body">{parse(`${noteBody}`)}</div>
                                                     </div>
                                                 </div>
                                     

@@ -47,7 +47,7 @@ const SecondaryNav = () => {
                     onClick={() => componentDispatch({type: "SHOW_TEXT_EDITOR"})}
                 >
                     <i className="fa-solid fa-plus"></i>
-                    New Note
+                    <span>New Note</span>
                 </button>
             </div>
         </div>

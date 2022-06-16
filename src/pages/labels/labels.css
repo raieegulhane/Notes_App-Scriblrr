@@ -18,10 +18,24 @@
 
 .labels-display-container {
     flex-wrap: wrap;
-    max-width: 80%;
+    max-width: 75%;
     max-height: 100px;
     margin: auto;
     overflow-y: auto;
+}
+
+.labels-display-container::-webkit-scrollbar {
+    width: 3px;
+}
+
+.labels-display-container::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-grey);
+    border-radius: 3px;
+}
+
+.note-body::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 3px;
 }
 
 .btn.btn-primary.chip-label {

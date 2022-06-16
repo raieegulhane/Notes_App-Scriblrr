@@ -6,7 +6,7 @@ const useToast = () => {
         const notify = () => {
             toast[toastTheme](
                 toastMessage,
-                    {
+                {
                     position: "top-right",
                     autoClose: 2500,
                     hideProgressBar: false,

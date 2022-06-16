@@ -1,6 +1,7 @@
 .notes-list-container {
     flex-wrap: wrap;
-    gap: 1rem;
+    padding-bottom: 1rem;
+    gap: 1.5rem;
 }
 
 img {

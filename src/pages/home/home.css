@@ -1,13 +1,27 @@
 .home-notes-list-wrapper {
     height: 75vh;
     padding: 0 3rem;
-    margin: 0 2rem;
+    margin-left: 2rem;
+    margin-right: 1rem;
     overflow-y: auto;
+}
+
+.home-notes-list-wrapper::-webkit-scrollbar {
+    width: 3px;
+}
+
+.home-notes-list-wrapper::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-grey);
+    border-radius: 3px;
+}
+
+.home-notes-list-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 3px;
 }
 
 .home-notes-container {
     margin: 1rem 0 4rem;
-
 }
 
 .home-list-heading {
