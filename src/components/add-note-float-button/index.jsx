@@ -1,9 +1,8 @@
 import "./add-note-float-button.css";
 import { useComponent } from "../../contexts";
-import { NoteInputForm } from "..";
 
 const AddNoteButton = () => {
-    const { componentState, componentDispatch } = useComponent();
+    const { componentDispatch } = useComponent();
 
     return(
         <div>
@@ -13,11 +12,6 @@ const AddNoteButton = () => {
             >
                 <i className="fa-solid fa-plus"></i>
             </button>
-
-            {
-                componentState.showTextEditor &&
-                <NoteInputForm />
-            }
         </div>
     );
 }

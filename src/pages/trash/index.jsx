@@ -1,9 +1,10 @@
-import { useNote } from "../../contexts/note-context";
-import { NotesList } from "../../components/notes/notes-list";
+import { useNote, useComponent } from "../../contexts";
+import { NotesList, AddNoteButton, NoteInputForm } from "../../components";
 
 const Trash = () => {
-    const { noteState } = useNote();
-    const { trashedNotes } = noteState;
+    const { noteState: { trashedNotes } } = useNote();
+    const { componentState: { showTextEditor } } = useComponent();
+
 
     return(
         <div className="home-notes-list-wrapper archived-list">
@@ -21,6 +22,12 @@ const Trash = () => {
                 <p className="archived-note flex flex_justify-center flex_align-middle">
                     Trash folder is empty.
                 </p> 
+            }
+
+            <AddNoteButton />
+            {
+                showTextEditor &&
+                <NoteInputForm />
             }
         </div>
     );

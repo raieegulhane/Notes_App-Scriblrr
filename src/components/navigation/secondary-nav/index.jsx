@@ -1,9 +1,9 @@
 import "./secondary-nav.css";
 import { useNote, useComponent } from "../../../contexts";
-import { SortDropdown, FilterDropdown } from "../../../components";
+import { SortDropdown, FilterDropdown, NoteInputForm } from "../../../components";
 
 const SecondaryNav = () => {
-    const { componentState: { showFilterDropdown, showSortDropdown }, componentDispatch } = useComponent();
+    const { componentState: { showTextEditor, showFilterDropdown, showSortDropdown }, componentDispatch } = useComponent();
     const { noteDispatch } = useNote();
 
     return(
@@ -49,6 +49,11 @@ const SecondaryNav = () => {
                     <i className="fa-solid fa-plus"></i>
                     <span>New Note</span>
                 </button>
+
+                {
+                    showTextEditor &&
+                    <NoteInputForm />
+                }
             </div>
         </div>
     );

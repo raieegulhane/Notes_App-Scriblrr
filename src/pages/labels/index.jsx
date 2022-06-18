@@ -3,13 +3,14 @@ import parse from 'html-react-parser';
 import { useState } from "react";
 import { useNote, useComponent } from "../../contexts";
 import { useToast } from "../../custom-hooks";
+import { AddNoteButton, NoteInputForm } from "../../components";
 
 
 const Labels = () => {
     const { showToast }  = useToast();
 
     const { componentState, componentDispatch } = useComponent();
-    const { showLabelDeleteConfirmation } = componentState;
+    const { showTextEditor, showLabelDeleteConfirmation } = componentState;
 
     const { noteState, noteDispatch } = useNote();
     const { allNotes, allLabels } = noteState;
@@ -175,6 +176,13 @@ const Labels = () => {
                         </div>
                     </div>
                 </div>
+            }
+
+            <AddNoteButton />
+
+            {
+                showTextEditor &&
+                <NoteInputForm />
             }
         </div>
     );
