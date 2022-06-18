@@ -4,7 +4,7 @@
 }
 
 .container-links {
-    gap: 0.25rem;
+    gap: 1rem;
 }
 
 .page-link {
@@ -16,7 +16,7 @@
 }
 
 .page-link:hover {
-    background-color: var(--grey2);
+    background-color: var(--grey4);
     transition: 500ms ease-in;
 }
 
@@ -42,7 +42,7 @@
 }
 
 .username-display {
-    color: var(--grey3);
+    color: var(--grey5);
     font-weight: bold;
 }
 

@@ -18,7 +18,7 @@ const SortDropdown = () => {
             
             {/* fiter by priority */}
             <div className="dropdown-section flex-col flex_justify-start">
-                <h4>Priority:</h4>
+                <h4 className="dropdown-label-heading">Priority:</h4>
                 <label 
                     className="dropdown-label"
                     htmlFor="high-to-low"
@@ -53,7 +53,7 @@ const SortDropdown = () => {
 
             {/* filter by date */}
             <div className="dropdown-section flex-col flex_justify-start">
-                <h4>Date:</h4>
+                <h4 className="dropdown-label-heading">Date:</h4>
                 <label 
                     className="dropdown-label"
                     htmlFor="newest-first"

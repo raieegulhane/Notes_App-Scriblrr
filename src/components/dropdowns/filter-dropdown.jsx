@@ -21,7 +21,7 @@ const FilterDropdown = () => {
 
             {/* filter by priority */}
             <div className="dropdown-section flex-col flex_justify-start">
-                <h4>Priority:</h4>
+                <h4 className="dropdown-label-heading">Priority:</h4>
                 <label 
                     className="dropdown-label"
                     htmlFor="priority_high"
@@ -71,7 +71,7 @@ const FilterDropdown = () => {
 
             {/* filter by colors */}
             <div className="dropdown-section flex-col flex_justify-start">
-                <h4>Colors:</h4>
+                <h4 className="dropdown-label-heading">Colors:</h4>
                 <div className="filter-colors-options flex-row">
                 {
                     colorsArray.map(({ id, color }) => {

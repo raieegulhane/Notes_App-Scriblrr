@@ -11,7 +11,7 @@
 }
 
 .home-notes-list-wrapper::-webkit-scrollbar-thumb {
-    background-color: var(--secondary-grey);
+    background-color: var(--grey3);
     border-radius: 3px;
 }
 

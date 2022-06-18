@@ -2,7 +2,7 @@
     position: relative;
     color: var(--text-color);
     width: 250px;
-    border: 1px solid var(--grey);
+    border: 1px solid var(--grey3);
     border-radius: 1rem;
 }
 
@@ -22,7 +22,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    color: var(--primary-color-highlight)
+    color: var(--primary-color)
 }
 
 .note-content-display {
@@ -40,7 +40,7 @@
 }
 
 .note-body::-webkit-scrollbar-thumb {
-    background-color: var(--secondary-grey);
+    background-color: var(--grey3);
     border-radius: 3px;
 }
 

@@ -28,7 +28,7 @@ const SideNav = () => {
     const getActiveStyle = ({ isActive }) => {
         if (isActive) {
             return ({
-                backgroundColor: "#f9f8ff",
+                backgroundColor: "#e9e9f6",
                 color: "#52569b" 
             });
         }
