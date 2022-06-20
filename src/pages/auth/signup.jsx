@@ -5,12 +5,15 @@ import { signupService } from "../../services"
 import { useAuth } from "../../contexts";
 import { initialAuthValue } from "../../reducers";
 import { PasswordInput } from "../../components";
+import { useToast } from "../../custom-hooks";
 
 
 const Signup = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { authDispatch, isAuth } = useAuth();
+    const { authDispatch, isAuth, authError} = useAuth();
+
+    const { showToast } = useToast();
 
     useEffect(() => {
         isAuth && navigate(location?.state?.from ? location.state.from : "/home", { replace: true});
@@ -56,6 +59,7 @@ const Signup = () => {
             localStorage.setItem("user-data", JSON.stringify(createdUser));
 
             navigate(location?.state?.from ? location.state.from : "/home", {replace: true});
+            showToast("success", "Signup successful!!")
         } catch (error) {
             console.log("SIGNUP ERROR: ", error);
 
@@ -65,9 +69,10 @@ const Signup = () => {
             authDispatch(
                 {
                     ...initialAuthValue,
-                    authError: "Problem occured while signup."
+                    authError: "Problem occured while signing up."
                 }
             );
+            showToast("error", authError)
         }
         
     }
@@ -120,21 +125,29 @@ const Signup = () => {
                     </label>
                     <label className="auth-label" htmlFor="new-password">
                         Password:
-                        <PasswordInput 
-                            id={"new-password"}
-                            name={"password"}
-                            placeholder={"Atleast 6 charachters"}
+                        <input
+                            className="input input-sq input-br"
+                            id="new-password"
+                            name="password"
+                            type={"password"}
+                            placeholder="Re-enter password"
+                            minLength="6"
                             value={password}
+                            required
                             onChange={updateUserData}
                         />
                     </label>
                     <label className="auth-label" htmlFor="confirm-password">
                         Confirm Password:
-                        <PasswordInput 
-                            id={"confirm-password"}
-                            name={"confirmPassword"}
-                            placeholder={"Re-enter password"}
+                        <input
+                            className="input input-sq input-br"
+                            id="confirm-password"
+                            name="confirmPassword"
+                            type={"password"}
+                            placeholder="Re-enter password"
+                            minLength="6"
                             value={confirmPassword}
+                            required
                             onChange={updateUserData}
                         />
                     </label>

@@ -1,25 +1,30 @@
 /* fonts */
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Open+Sans:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Raleway:wght@400;700&display=swap');
 
 :root {
 
     /* fonts */
     --logo-font: 'Amatic SC', 'cursive';
-    --text-font: 'Open Sans', 'sans-serif';
+    --text-font: 'Raleway', sans-serif;
 
     /* colors */
     --white: #ffffff;
     --black: #202124;
-    --primary-color: #919fff;
-    --primary-color-highlight: #798bff;
-    --secondary-color: #b3beff;
-    --accent-color: #cdd2ff;
-    --primary-grey: #f7f7f7;
-    --secondary-grey:#cbcbcb;
-    --app-content-grey:#777c81;
+
     --text-color: #303030;
-    --grey: #dedede;
+    --primary-color: #52569b;
+    --primary-color-highlight: #212d6c;
+    --secondary-color: #8282cc;
+    --accent-color: #dcdcfa;
+    --accent-color-light: #f4f4ff;
+
+    --app-content-grey:#76797b;
+    --grey1: #f7f7f7;
     --grey2: #efefef;
-    --grey3: #4b4d4f;
-    --grey4: #3f3f3f;
+    --grey3: #dedede;
+    --grey4: #f2f2f2;
+    --grey5: #4b4d4f;
+    --grey6: #cbcbcb;
+    --grey7: #afafaf;
+    --grey8:#8e8e8e;
 }

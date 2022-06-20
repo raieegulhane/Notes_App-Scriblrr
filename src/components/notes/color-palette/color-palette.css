@@ -4,7 +4,8 @@
     right: 0;
     left: 0;
     background-color: var(--text-color);
-    gap: 1rem;
+    width: fit-content;
+    gap: 1.5rem;
     padding: 0.25rem 1rem;
     border-radius: var(--br-sq);
     margin: 1rem;

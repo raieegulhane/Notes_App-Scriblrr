@@ -1,21 +1,28 @@
 import "./label-editor.css";
 import { useState } from "react";
 import { useNote, useComponent } from "../../contexts";
+import { useToast } from "../../custom-hooks";
 
 
 const LabelEditor = ({ onClick }) => {
     const { componentDispatch } = useComponent();
-    const { noteState, noteDispatch } = useNote();
-    const { allLabels } = noteState;
+    const { noteState: { allLabels }, noteDispatch } = useNote();
+
+    const { showToast } = useToast();
 
     const [newLabel, setNewLabel] = useState("");
 
     const addNewLabel = (event) => {
         const { value } = event.target;
+
+        if (event.key === "Enter" && !value) {
+            showToast("warning", "Label cannot be empty.");
+        }
+
         if (event.key === "Enter" && value) {
             noteDispatch({ type: "ADD_NEW_LABEL", payload: newLabel });
             setNewLabel("");
-        }
+        } 
     }
 
     

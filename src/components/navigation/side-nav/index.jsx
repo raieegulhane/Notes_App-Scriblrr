@@ -1,15 +1,16 @@
 import "./side-nav.css";
+import { HomeRounded, LocalOfferRounded, ArchiveRounded, DeleteRounded } from '@mui/icons-material';
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts";
 import { initialAuthValue } from "../../../reducers";
+import { useToast } from "../../../custom-hooks";
 
 const SideNav = () => {
-
+    const { showToast } = useToast();
     const navigate = useNavigate();
-    const { authDispatch } = useAuth();
+    const { authUser: { firstName, lastName }, authDispatch } = useAuth();
 
     const logoutHandler = () => {
-
         localStorage.removeItem("auth-token");
         localStorage.removeItem("user-data");
 
@@ -21,13 +22,14 @@ const SideNav = () => {
         );
 
         navigate("/login");
+        showToast("success", "Logout successful.")
     }
 
     const getActiveStyle = ({ isActive }) => {
         if (isActive) {
             return ({
-                backgroundColor: "#e7eaff",
-                color: "#7184ff" 
+                backgroundColor: "#e9e9f6",
+                color: "#52569b" 
             });
         }
     }
@@ -39,7 +41,7 @@ const SideNav = () => {
                     className="page-link flex-row flex_align-middle link-noDecoration" 
                     style={getActiveStyle}
                 >
-                    <i className="fa-solid fa-house"></i>
+                    <HomeRounded />
                     <h3>Home</h3>
                 </NavLink>
                 <NavLink 
@@ -47,7 +49,7 @@ const SideNav = () => {
                     className="page-link flex-row flex_align-middle link-noDecoration"
                     style={getActiveStyle}
                 >
-                    <i className="fa-solid fa-tag"></i>
+                    <LocalOfferRounded />
                     <h3>Labels</h3>
                 </NavLink>
                 <NavLink 
@@ -55,7 +57,7 @@ const SideNav = () => {
                     className="page-link flex-row flex_align-middle link-noDecoration"
                     style={getActiveStyle}
                 >
-                    <i className="fa-solid fa-box-archive"></i>
+                    <ArchiveRounded />
                     <h3>Archive</h3>
                 </NavLink>
                 <NavLink 
@@ -63,21 +65,22 @@ const SideNav = () => {
                     className="page-link flex-row flex_align-middle link-noDecoration"
                     style={getActiveStyle}
                 >
-                    <i className="fa-solid fa-trash-can"></i>
+                    <DeleteRounded />
                     <h3>Trash</h3>
                 </NavLink>
             </div>
-            <div className="user-operation flex-row flex_align-middle">
+            <div className="user-operation flex-col flex_justify-center">
                 <div className="user-avatar flex-row flex_align-middle">
                     <div className="avatar-icon avatar-circle avatar-sm avatar-border">                                   
                         <i className="fa-solid fa-user icon"></i>
                     </div>
-                    <div>Username</div>
+                    <div className="username-display">{`${firstName} ${lastName}`}</div>
                 </div>
                 <button 
-                    className="logout-btn btn-icon btn-sq"
+                    className="logout-btn flex-row flex_justify-center flex_align-middle btn-wt-icon btn btn-outline btn-cr"
                     onClick={logoutHandler}
                 >
+                    <span>Logout</span>
                     <i className="fa-solid fa-arrow-right-from-bracket logout-icon"></i>
                 </button>   
             </div>

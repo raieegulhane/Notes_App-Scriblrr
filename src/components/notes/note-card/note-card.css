@@ -2,16 +2,14 @@
     position: relative;
     color: var(--text-color);
     width: 250px;
-    height: 250px;
-    border: 1px solid var(--grey);
+    border: 1px solid var(--grey3);
     border-radius: 1rem;
-    margin: 1rem;
-    overflow-y: auto;
 }
 
 .note-card-wrapper:hover {
-    border-color: var(--accent-color);
-    box-shadow: 0 1px 7px rgba(0 0 0 / 10%);
+    border-color: transparent;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 3px 5px 0px, rgba(0, 0, 0, 0.05) 0px 2px 7px 0px;
+    transition: 0.5s ease;
 }
 
 .note-timestamp-container {
@@ -20,18 +18,35 @@
     margin: 0.5rem 1rem 0 1rem;
 }
 
-.pin-btn {
+.editor-btn.pinned {
     position: absolute;
     top: 0;
     right: 0;
-}
-
-.editor-btn.pinned {
-    color: var(--primary-color-highlight)
+    color: var(--primary-color)
 }
 
 .note-content-display {
-    padding: 1rem 1rem;
+    padding: 1rem;
+}
+
+.note-body {
+    height: 100px;
+    margin-top: 0.5rem;
+    overflow-y: auto;
+}
+
+.note-body::-webkit-scrollbar {
+    width: 3px;
+}
+
+.note-body::-webkit-scrollbar-thumb {
+    background-color: var(--grey3);
+    border-radius: 3px;
+}
+
+.note-body::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 3px;
 }
 
 .note-labels-container {
@@ -59,7 +74,7 @@
 
 .card-btn-visible {
     opacity: 1;
-    transition: 0.5s ease;
+    transition: 2s ease;
 }
 
 .editor-btn.card-btn {

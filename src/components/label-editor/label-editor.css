@@ -15,8 +15,8 @@
 }
 
 .input.label-input {
-    background-color: var(--text-grey);
-    color: var(--primary-grey);
+    background-color: var(--text-color);
+    color: var(--grey1);
     font-size: 0.75rem;
     width: 75%;
     padding: 0.2rem, 1.5rem;
@@ -27,7 +27,7 @@
 }
 
 .labels-container {
-    border-top: 1px solid var(--grey4);
+    border-top: 1px solid var(--grey5);
     padding: 1rem 1rem 0;
     margin: 0.5rem;
 }

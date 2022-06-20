@@ -6,12 +6,16 @@ const initialNotesData = {
     trashedNotes: [],
     allLabels: [],
     isEditing: false,
-    isEditingId: ""
+    isEditingId: "",
+    searchResults: {
+        searching: false,
+        searchedNotes: []
+    }
 };
 
 const noteReducerFunction = (state, { type, payload }) => {
-    const { notes, archives, trash, _id, editNoteStatus, editNoteId } = payload;
-    const { allNotes, allLabels } = state;
+    const { notes, archives, trash, editNoteStatus, editNoteId } = payload;
+    const { allNotes, archivedNotes, trashedNotes, allLabels } = state;
 
     switch(type) { 
         case "SET_NOTES": 
@@ -38,7 +42,30 @@ const noteReducerFunction = (state, { type, payload }) => {
                 {...state};
 
         case "DELETE_LABEL":
-            return({ ...state, allLabels: allLabels.filter(({ id }) => id !== payload) });
+            return({ 
+                ...state,
+                allNotes: allNotes.map((note) => {
+                    const { noteLabels } = note;
+                    return {...note, noteLabels: [ ...noteLabels].filter((label) => label.id !== payload)}
+                }),
+                archivedNotes: archivedNotes.map((note) => {
+                    const { noteLabels } = note;
+                    return {...note, noteLabels: [ ...noteLabels].filter((label) => label.id !== payload)}
+                }),
+                trashedNotes: trashedNotes.map((note) => {
+                    const { noteLabels } = note;
+                    return {...note, noteLabels: [ ...noteLabels].filter((label) => label.id !== payload)}
+                }), 
+                allLabels: allLabels.filter(({ id }) => id !== payload) });
+
+        case "SET_SEARCHED_NOTES":
+            return({
+                ...state,
+                searchResults: {
+                    searching: payload ? true : false,
+                    searchedNotes: [ ...allNotes ].filter((note) => note.noteTitle.includes(payload) || note.noteBody.includes(payload))
+                }
+            })
 
         default:
             return({ ...initialNotesData });

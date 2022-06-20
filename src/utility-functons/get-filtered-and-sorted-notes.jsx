@@ -3,7 +3,7 @@ import {
     filterByColorFunction,
     sortByPriorityFunction,
     sortByDateFunction
-} from "../utility-functons";
+} from ".";
 
 
 const getFilteredAndSortedNotes = (allNotesArray, filterState) => {

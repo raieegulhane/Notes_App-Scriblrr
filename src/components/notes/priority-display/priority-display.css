@@ -1,0 +1,5 @@
+.priority-display-wrapper {
+    color: var(--app-content-grey);
+    font-size: 1.25rem;
+    padding: 0 1rem;
+}
