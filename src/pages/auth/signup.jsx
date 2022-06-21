@@ -125,29 +125,21 @@ const Signup = () => {
                     </label>
                     <label className="auth-label" htmlFor="new-password">
                         Password:
-                        <input
-                            className="input input-sq input-br"
-                            id="new-password"
-                            name="password"
-                            type={"password"}
-                            placeholder="Re-enter password"
-                            minLength="6"
+                        <PasswordInput 
+                            id={"new-password"}
+                            name={"password"}
+                            placeholder={"Minimum 6 charachters"}
                             value={password}
-                            required
                             onChange={updateUserData}
                         />
                     </label>
                     <label className="auth-label" htmlFor="confirm-password">
                         Confirm Password:
-                        <input
-                            className="input input-sq input-br"
-                            id="confirm-password"
-                            name="confirmPassword"
-                            type={"password"}
-                            placeholder="Re-enter password"
-                            minLength="6"
+                        <PasswordInput 
+                            id={"confirm-password"}
+                            name={"confirmPassword"}
+                            placeholder={"Re-enter Password"}
                             value={confirmPassword}
-                            required
                             onChange={updateUserData}
                         />
                     </label>

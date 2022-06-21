@@ -3,6 +3,10 @@ import { useState } from "react";
 
 const PasswordInput = ({id, name, placeholder, value, onChange}) => {
     const [passwordVisibility, setPasswordVisibility] = useState(false);
+    const passwordVisibilityHandler = (event) => {
+        event.preventDefault();
+        setPasswordVisibility(!passwordVisibility)
+    }
 
     return (
         <div className="input-wt-btn-container input-sq input-br flex-row align_items-middle">
@@ -19,11 +23,11 @@ const PasswordInput = ({id, name, placeholder, value, onChange}) => {
             />
             <button 
                 className="btn-hide-password"
-                onClick={() => setPasswordVisibility(!passwordVisibility)}    
+                onClick={passwordVisibilityHandler}    
             >
                 {
                     passwordVisibility ? 
-                    <i class="fa-solid fa-eye-slash icon-hide"></i> : 
+                    <i className="fa-solid fa-eye-slash icon-hide"></i> : 
                     <i className="fa-solid fa-eye icon-hide"></i>
                 }
             </button>
