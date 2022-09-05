@@ -15,10 +15,6 @@ const Signup = () => {
 
     const { showToast } = useToast();
 
-    useEffect(() => {
-        isAuth && navigate(location?.state?.from ? location.state.from : "/home", { replace: true});
-    }, [isAuth]);
-
     const [userData, setUserData] = useState(
         {
             firstName: "",
@@ -58,7 +54,7 @@ const Signup = () => {
             localStorage.setItem("auth-token", encodedToken);
             localStorage.setItem("user-data", JSON.stringify(createdUser));
 
-            navigate(location?.state?.from ? location.state.from : "/home", {replace: true});
+            navigate("/home", {replace: true});
             showToast("success", "Signup successful!!")
         } catch (error) {
             console.log("SIGNUP ERROR: ", error);

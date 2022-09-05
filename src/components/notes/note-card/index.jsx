@@ -23,18 +23,19 @@ import { useToast } from "../../../custom-hooks";
 
 
 const NoteCard = ({ currentNote }) => {
-    const { _id, 
-            noteTitle, 
-            noteBody, 
-            noteColor, 
-            noteLabels, 
-            notePriority,
-            isPinned, 
-            isArchived, 
-            isTrashed, 
-            displayDate, 
-            displayTime 
-        } = currentNote;
+    const { 
+        _id, 
+        noteTitle, 
+        noteBody, 
+        noteColor, 
+        noteLabels, 
+        notePriority,
+        isPinned, 
+        isArchived, 
+        isTrashed, 
+        displayDate, 
+        displayTime 
+    } = currentNote;
 
     const { authToken } = useAuth(); 
     const { noteDispatch } = useNote();

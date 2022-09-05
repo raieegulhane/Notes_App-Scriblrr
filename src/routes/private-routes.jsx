@@ -1,9 +1,10 @@
 import "../../src/styles/main.css"
-import { Outlet, Navigate } from "react-router-dom";
+import { Outlet, Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts";
 import { SideNav } from "../components";
 
 const PrivateRoutes = () => {
+    const location = useLocation();
     const { isAuth } = useAuth();
 
     return (
@@ -14,7 +15,7 @@ const PrivateRoutes = () => {
                     <Outlet />
                 </main>    
             ) : (
-                <Navigate to="/login"/>
+                <Navigate to="/login" state={{ from: location }} replace/>
             )
     );
 }
